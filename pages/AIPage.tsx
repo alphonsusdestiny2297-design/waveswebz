@@ -17,7 +17,7 @@ const AIPage: React.FC<AIPageProps> = ({ onOpenChat, onOpenQuote }) => {
       {/* Page Header Band with Uploaded Executive Boardroom Image */}
       <div 
         className="page-header-band"
-        style={{ backgroundImage: `url('/src/assets/images/boardroom_executive_strategy_1790663177604.jpg')` }}
+        style={{ backgroundImage: `url('/assets/images/boardroom_executive_strategy_1790663177604.jpg')` }}
       >
         <div className="page-header-overlay" />
         <h1 className="cursive gold-text">ai modules</h1>

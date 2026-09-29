@@ -35,7 +35,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
             Waves builds fast, reliable, mobile-first business websites for Nigerian SMEs — professional digital homes that help customers discover, understand, trust, enquire, and act.
           </p>
 
-          <div className="flex items-center gap-3 pt-2">
+          <div className="flex flex-wrap items-center gap-3 pt-2">
             <a
               href={WHATSAPP_LINK}
               target="_blank"
@@ -51,6 +51,17 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
             >
               Request Quote
             </button>
+            <a
+              href="/waves-website.zip"
+              download="waves-website.zip"
+              className="cta cta-secondary text-xs py-2 px-4 flex items-center gap-1.5"
+              title="Download full project folder archive (.zip)"
+            >
+              <svg className="w-3.5 h-3.5 text-[#d4af37]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              <span>Download ZIP</span>
+            </a>
           </div>
         </div>
 

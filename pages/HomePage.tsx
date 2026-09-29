@@ -14,10 +14,10 @@ interface HomePageProps {
 }
 
 const HERO_SLIDES = [
-  '/src/assets/images/skyline_golden_lake_1790663127615.jpg',
-  '/src/assets/images/skyscrapers_night_water_1790663140393.jpg',
-  '/src/assets/images/city_street_rainy_chrysler_1790663155616.jpg',
-  '/src/assets/images/urban_golden_hour_street_1790663189316.jpg',
+  '/assets/images/skyline_golden_lake_1790663127615.jpg',
+  '/assets/images/skyscrapers_night_water_1790663140393.jpg',
+  '/assets/images/city_street_rainy_chrysler_1790663155616.jpg',
+  '/assets/images/urban_golden_hour_street_1790663189316.jpg',
 ];
 
 const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
@@ -188,7 +188,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
           <div className="lg:col-span-6">
             <div className="relative rounded-2xl overflow-hidden border border-[rgba(212,175,55,0.25)] shadow-2xl">
               <img 
-                src="/src/assets/images/creative_team_workspace_1790663167313.jpg" 
+                src="/assets/images/creative_team_workspace_1790663167313.jpg" 
                 alt="Creative collaborative team in workspace"
                 referrerPolicy="no-referrer"
                 className="w-full h-80 object-cover filter brightness-90 hover:scale-105 transition-transform duration-700"

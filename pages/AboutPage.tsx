@@ -16,7 +16,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onOpenQuote }) => {
       {/* Page Header Band with Uploaded Workspace Image */}
       <div 
         className="page-header-band"
-        style={{ backgroundImage: `url('/src/assets/images/creative_team_workspace_1790663167313.jpg')` }}
+        style={{ backgroundImage: `url('/assets/images/creative_team_workspace_1790663167313.jpg')` }}
       >
         <div className="page-header-overlay" />
         <h1 className="cursive gold-text">digital home</h1>

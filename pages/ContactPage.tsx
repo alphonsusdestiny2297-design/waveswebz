@@ -25,7 +25,7 @@ const ContactPage: React.FC = () => {
       {/* Page Header Band with Uploaded Night Skyline Image */}
       <div 
         className="page-header-band"
-        style={{ backgroundImage: `url('/src/assets/images/skyscrapers_night_water_1790663140393.jpg')` }}
+        style={{ backgroundImage: `url('/assets/images/skyscrapers_night_water_1790663140393.jpg')` }}
       >
         <div className="page-header-overlay" />
         <h1 className="cursive gold-text">contact</h1>

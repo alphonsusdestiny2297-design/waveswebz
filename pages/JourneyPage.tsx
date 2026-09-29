@@ -16,7 +16,7 @@ const JourneyPage: React.FC<JourneyPageProps> = ({ onOpenQuote }) => {
       {/* Page Header Band with Uploaded Golden Skyline Image */}
       <div 
         className="page-header-band"
-        style={{ backgroundImage: `url('/src/assets/images/skyline_golden_lake_1790663127615.jpg')` }}
+        style={{ backgroundImage: `url('/assets/images/skyline_golden_lake_1790663127615.jpg')` }}
       >
         <div className="page-header-overlay" />
         <h1 className="cursive gold-text">customer journey</h1>

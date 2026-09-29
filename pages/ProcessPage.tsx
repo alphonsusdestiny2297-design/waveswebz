@@ -16,7 +16,7 @@ const ProcessPage: React.FC<ProcessPageProps> = ({ onOpenQuote }) => {
       {/* Page Header Band with Uploaded Golden Hour Street Scene */}
       <div 
         className="page-header-band"
-        style={{ backgroundImage: `url('/src/assets/images/urban_golden_hour_street_1790663189316.jpg')` }}
+        style={{ backgroundImage: `url('/assets/images/urban_golden_hour_street_1790663189316.jpg')` }}
       >
         <div className="page-header-overlay" />
         <h1 className="cursive gold-text">how it works</h1>

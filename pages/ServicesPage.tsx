@@ -17,7 +17,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenQuote }) => {
       {/* Page Header Band with Uploaded Rainy City Street Image */}
       <div 
         className="page-header-band"
-        style={{ backgroundImage: `url('/src/assets/images/city_street_rainy_chrysler_1790663155616.jpg')` }}
+        style={{ backgroundImage: `url('/assets/images/city_street_rainy_chrysler_1790663155616.jpg')` }}
       >
         <div className="page-header-overlay" />
         <h1 className="cursive gold-text">services</h1>
