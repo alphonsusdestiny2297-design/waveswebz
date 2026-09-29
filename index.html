@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waves — Your Business. Your Digital Home.</title>
+    <meta name="description" content="Waves builds fast, reliable, mobile-first business websites for Nigerian SMEs — professional digital homes that help customers discover, understand, trust, enquire, and act." />
+    <meta property="og:title" content="Waves — Your Business. Your Digital Home." />
+    <meta property="og:description" content="Fast, reliable, mobile-first business websites for Nigerian SMEs. Professional digital homes designed for real customer action." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#F0F9FF',
+                100: '#E0F2FE',
+                500: '#0EA5E9',
+                600: '#0284C7',
+                700: '#0369A1',
+                800: '#075985',
+                900: '#0C4A6E',
+                950: '#082F49'
+              },
+              whatsapp: {
+                500: '#25D366',
+                600: '#128C7E',
+                700: '#075E54'
+              }
+            },
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
+              heading: ['Plus Jakarta Sans', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+        background-color: #F8FAFC;
+        color: #0F172A;
+      }
+
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #F8FAFC;
+        color: #0F172A;
+      }
+
+      /* Clean subtle custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #F1F5F9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #CBD5E1;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94A3B8;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.29.0",
+    "react/": "https://esm.sh/react@^19.2.0/",
+    "react": "https://esm.sh/react@^19.2.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-[#F8FAFC] text-slate-900 antialiased selection:bg-brand-500/20 selection:text-brand-900">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

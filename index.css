@@ -1,0 +1,604 @@
+/* ============================================================
+   waves — shared stylesheet & liquid gold theme
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+
+  --gold-1: #7a5c1e;   /* deep gold  */
+  --gold-2: #d4af37;   /* rich gold  */
+  --gold-3: #fff3c4;   /* pale gold  */
+  --gold-highlight: #f9e27d;
+  --gold-dark: #b8860b;
+  --ink:    #0a0a0a;   /* near black */
+  --paper:  #111111;   /* page bg    */
+  --paper-card: rgba(212, 175, 55, 0.06);
+  --paper-border: rgba(212, 175, 55, 0.22);
+
+  --nav-w: 230px;      /* live sidebar width — JS overwrites on resize */
+  --nav-max: 25%;
+
+  --gold-gradient: linear-gradient(110deg,
+      var(--gold-1) 0%,  var(--gold-2) 20%,
+      var(--gold-3) 38%, var(--gold-highlight) 50%,
+      var(--gold-dark) 65%, var(--gold-1) 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--paper);
+  color: rgba(255, 243, 196, 0.88);
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--paper);
+  color: rgba(255, 243, 196, 0.88);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ---------- Typography & Liquid Gold ---------- */
+.cursive {
+  font-family: 'Great Vibes', 'Snell Roundhand', 'Brush Script MT',
+               'Segoe Script', 'Lucida Handwriting', cursive;
+}
+
+.font-serif-heading {
+  font-family: 'Cinzel', Georgia, 'Times New Roman', serif;
+}
+
+.gold-text {
+  background: var(--gold-gradient);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: inline-block;
+  animation: shimmer 5s linear infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 0% 0; }
+  100% { background-position: 250% 0; }
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold-2);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ---------- Sidebar Navbar (Desktop) ---------- */
+.site-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--nav-w);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.25rem 1.25rem;
+  background: rgba(10, 10, 10, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-right: 1px solid rgba(212, 175, 55, 0.25);
+  user-select: none;
+  transition: padding 0.2s ease;
+}
+
+/* Collapsed Icon-Only Mode (< 140px) */
+:where(.site-sidebar.icon-only) {
+  padding: 2rem 0.5rem;
+  align-items: center;
+}
+
+:where(.site-sidebar.icon-only) .nav-brand {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+:where(.site-sidebar.icon-only) .nav-btn {
+  padding: 0.75rem 0;
+  justify-content: center;
+  border-left: none;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+:where(.site-sidebar.icon-only) .nav-btn:hover,
+:where(.site-sidebar.icon-only) .nav-btn.active {
+  padding-left: 0;
+  border-left-color: transparent;
+  background: rgba(212, 175, 55, 0.15);
+}
+
+/* Drag Handle for Resizable Sidebar */
+.drag-handle {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  width: 8px;
+  height: 100%;
+  cursor: ew-resize;
+  touch-action: none;
+  background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.5), transparent);
+  transition: background 0.2s, box-shadow 0.2s;
+  z-index: 50;
+}
+
+.drag-handle:hover,
+.drag-handle:focus-visible,
+.drag-handle.active {
+  background: var(--gold-2);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
+}
+
+.nav-brand {
+  display: inline-block;
+  line-height: 1;
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+  transition: transform 0.3s ease;
+  user-select: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-brand:hover {
+  transform: scale(1.04);
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.nav-btn {
+  font-family: Georgia, serif;
+  font-size: 0.925rem;
+  letter-spacing: 0.12em;
+  text-align: left;
+  text-decoration: none;
+  color: rgba(255, 243, 196, 0.8);
+  background: none;
+  border: none;
+  border-left: 2px solid transparent;
+  padding: 0.75rem 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease, border-color 0.3s ease, padding-left 0.3s ease, background 0.3s ease;
+  border-radius: 0 0.5rem 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-btn:hover {
+  color: var(--gold-3);
+  border-left-color: var(--gold-2);
+  padding-left: 1.25rem;
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.nav-btn[aria-current="page"],
+.nav-btn.active {
+  color: var(--gold-3);
+  border-left-color: var(--gold-2);
+  background: rgba(212, 175, 55, 0.08);
+  font-weight: 600;
+}
+
+/* ---------- Main Content Shell ---------- */
+.site-main {
+  margin-left: var(--nav-w);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  transition: margin-left 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.site-main.full-slider-mode {
+  margin-left: 0 !important;
+}
+
+.content-shell {
+  padding: 4rem clamp(1.5rem, 5vw, 4.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+  max-width: 1200px;
+}
+
+/* ---------- Page Header Band (Secondary Pages) ---------- */
+.page-header-band {
+  position: relative;
+  height: 34vh;
+  min-height: 240px;
+  max-height: 420px;
+  border-radius: 0 0 3rem 3rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  margin-bottom: 2rem;
+}
+
+.page-header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.72) 0%, rgba(10, 10, 10, 0.88) 100%);
+}
+
+.page-header-band h1 {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  line-height: 1.1;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
+}
+
+.page-header-subtitle {
+  position: relative;
+  z-index: 2;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--gold-3);
+  margin-top: 0.75rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+/* ---------- First Page / Hero Slider ---------- */
+.hero-slider-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.slideshow-track {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.slide-item {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1), transform 7s ease-out;
+  filter: brightness(0.52) saturate(0.92);
+}
+
+.slide-item.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(10, 10, 10, 0.8) 100%);
+  pointer-events: none;
+}
+
+.hero-center-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  gap: 1.5rem;
+}
+
+.brand-hero {
+  font-size: clamp(4.5rem, 13vw, 10.5rem);
+  line-height: 1;
+  text-decoration: none;
+  filter: drop-shadow(0 4px 22px rgba(212, 175, 55, 0.45));
+  transition: transform 0.5s ease;
+  user-select: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.brand-hero:hover {
+  transform: scale(1.04);
+}
+
+.hero-tagline {
+  letter-spacing: 0.45em;
+  text-indent: 0.45em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: rgba(255, 243, 196, 0.85);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
+  font-family: 'Cinzel', Georgia, serif;
+}
+
+/* ---------- Theme Cards ---------- */
+.gold-card {
+  background: var(--paper-card);
+  border: 1px solid var(--paper-border);
+  border-radius: 1rem;
+  padding: 1.75rem;
+  transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+
+.gold-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-2);
+  background: rgba(212, 175, 55, 0.09);
+}
+
+/* ---------- Pill Button (.cta) ---------- */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.8rem;
+  border: 1px solid var(--gold-2);
+  border-radius: 999px;
+  color: var(--gold-3);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.3s, border-color 0.3s;
+}
+
+.cta:hover {
+  background: var(--gold-2);
+  color: var(--ink);
+  transform: translateY(-2px);
+  border-color: var(--gold-3);
+}
+
+.cta-secondary {
+  border-color: rgba(212, 175, 55, 0.4);
+  color: rgba(255, 243, 196, 0.8);
+}
+
+.cta-secondary:hover {
+  background: rgba(212, 175, 55, 0.15);
+  color: #fff;
+  border-color: var(--gold-2);
+}
+
+/* ---------- FAQ Details ---------- */
+details.gold-faq {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 1.25rem 0;
+}
+
+details.gold-faq summary {
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: rgba(255, 243, 196, 0.9);
+  list-style: none;
+  transition: color 0.3s;
+}
+
+details.gold-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+details.gold-faq summary:hover {
+  color: var(--gold-3);
+}
+
+details.gold-faq[open] summary {
+  color: var(--gold-2);
+}
+
+/* ---------- Contact Cards ---------- */
+.contact-gold-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: rgba(212, 175, 55, 0.07);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 1rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.3s, transform 0.3s, background 0.3s;
+}
+
+.contact-gold-card:hover {
+  border-color: var(--gold-2);
+  background: rgba(212, 175, 55, 0.12);
+  transform: translateY(-3px);
+}
+
+.contact-gold-card svg {
+  width: 36px;
+  height: 36px;
+  fill: var(--gold-2);
+  flex-shrink: 0;
+}
+
+/* ---------- Floating WhatsApp ---------- */
+.whatsapp-float-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 50;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold-1));
+  box-shadow: 0 4px 22px rgba(212, 175, 55, 0.5), 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.whatsapp-float-btn:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.7);
+}
+
+.whatsapp-float-btn svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--ink);
+}
+
+/* ---------- Floating Quote Button ---------- */
+.quote-float-btn {
+  position: fixed;
+  bottom: 6.25rem;
+  right: 2rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  color: var(--gold-3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 0 12px rgba(212, 175, 55, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  font-size: 0.825rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.quote-float-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  border-color: var(--gold-2);
+  background: rgba(20, 20, 20, 0.98);
+  box-shadow: 0 8px 26px rgba(212, 175, 55, 0.4);
+  color: #fff;
+}
+
+/* ---------- Draggable Assistant Floating Button ---------- */
+.assistant-draggable-btn {
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  cursor: grab;
+}
+
+.assistant-draggable-btn:active {
+  cursor: grabbing;
+}
+
+/* ---------- Mobile Media Query & Hamburger Navigation (< 768px) ---------- */
+@media (max-width: 768px) {
+  :root {
+    --nav-w: 0px !important;
+  }
+
+  .site-sidebar {
+    display: none !important;
+  }
+
+  .site-main {
+    margin-left: 0 !important;
+  }
+
+  .hero-slider-section {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .page-header-band {
+    border-radius: 0 0 1.5rem 1.5rem;
+    height: 28vh;
+    min-height: 180px;
+  }
+
+  .content-shell {
+    padding: 2.5rem 1.25rem;
+    gap: 3rem;
+  }
+
+  .whatsapp-float-btn {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  .quote-float-btn {
+    bottom: 5rem;
+    right: 1.25rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* ---------- Page Navigation Transition ---------- */
+.page-view-fade {
+  animation: pageFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-view-fade {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
