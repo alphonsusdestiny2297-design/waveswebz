@@ -85,14 +85,14 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
             className="brand-hero focus:outline-none"
             aria-label="Waves — Slide into website"
           >
-            <span className="cursive gold-text inline-block">waves</span>
+            <span className="font-display font-black uppercase tracking-[0.14em] neon-text inline-block">waves</span>
           </button>
 
-          <p className="hero-tagline">
-            liquid gold
+          <p className="hero-tagline font-mono text-[#22E4FF]">
+            liquid glass ui
           </p>
 
-          <p className="text-xs sm:text-sm text-[#fff3c4]/80 max-w-md mx-auto font-serif tracking-wide leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#CBD7EC] max-w-md mx-auto font-sans tracking-wide leading-relaxed">
             Your Business. Your Digital Home. Fast, mobile-first business websites engineered for trust, clarity, and real customer action.
           </p>
         </div>
@@ -109,7 +109,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
               onClick={() => setCurrentSlide(idx)}
               className={`h-1.5 rounded-full transition-all duration-500 ${
                 idx === currentSlide 
-                  ? 'w-8 bg-[#d4af37]' 
+                  ? 'w-8 bg-[#22E4FF] shadow-[0_0_12px_#22E4FF]' 
                   : 'w-2 bg-white/30 hover:bg-white/60'
               }`}
               aria-label={`Slide ${idx + 1}`}
@@ -125,34 +125,34 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
         
         {/* Section: Digital Home Proposition */}
         <section>
-          <span className="text-xs uppercase tracking-[0.25em] text-[#d4af37] block mb-2 font-serif">
+          <span className="wv-tag block mb-2">
             Digital Foundation
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#fff3c4] mb-6 leading-tight">
-            Waves builds the <span className="cursive text-4xl sm:text-5xl md:text-6xl gold-text">digital home</span> for your business.
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-[#F2F7FF] mb-6 leading-tight">
+            Waves builds the <span className="font-display font-black uppercase tracking-[0.08em] text-3xl sm:text-4xl md:text-5xl neon-text">digital home</span> for your business.
           </h2>
-          <p className="text-base sm:text-lg text-[#fff3c4]/80 leading-relaxed font-serif max-w-3xl mb-8">
+          <p className="text-base sm:text-lg text-[#CBD7EC] leading-relaxed font-sans max-w-3xl mb-8">
             A professional online place where customers can understand what you offer, trust your business, find what they need, and contact you with zero friction.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="gold-card">
-              <h3 className="text-xl font-serif text-[#fff3c4] mb-2">01. Mobile-First</h3>
-              <p className="text-sm text-[#fff3c4]/75 leading-relaxed font-serif">
-                Engineered for speed on real Nigerian smartphone connections without code bloat or battery drain.
+              <h3 className="text-xl font-display text-[#F2F7FF] mb-2 tracking-wide">01. Mobile-First</h3>
+              <p className="text-sm text-[#CBD7EC] leading-relaxed font-sans">
+                Engineered for speed on real smartphone connections without code bloat or battery drain.
               </p>
             </div>
 
             <div className="gold-card">
-              <h3 className="text-xl font-serif text-[#fff3c4] mb-2">02. Instant WhatsApp</h3>
-              <p className="text-sm text-[#fff3c4]/75 leading-relaxed font-serif">
+              <h3 className="text-xl font-display text-[#F2F7FF] mb-2 tracking-wide">02. Instant WhatsApp</h3>
+              <p className="text-sm text-[#CBD7EC] leading-relaxed font-sans">
                 Connects directly to your WhatsApp with pre-filled enquiry context so customers take action immediately.
               </p>
             </div>
 
             <div className="gold-card">
-              <h3 className="text-xl font-serif text-[#fff3c4] mb-2">03. Zero False Hype</h3>
-              <p className="text-sm text-[#fff3c4]/75 leading-relaxed font-serif">
+              <h3 className="text-xl font-display text-[#F2F7FF] mb-2 tracking-wide">03. Zero False Hype</h3>
+              <p className="text-sm text-[#CBD7EC] leading-relaxed font-sans">
                 No fake testimonials or magic growth claims. Clear written scope, honest advice, and dependable execution.
               </p>
             </div>
@@ -162,16 +162,16 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
         {/* Section: Why Digital Home & Work Visual */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-6">
-            <span className="text-xs uppercase tracking-[0.25em] text-[#d4af37] block mb-2 font-serif">
+            <span className="wv-tag block mb-2">
               The Philosophy
             </span>
-            <h2 className="text-2xl sm:text-3xl font-serif text-[#fff3c4] mb-4">
+            <h2 className="text-2xl sm:text-3xl font-display text-[#F2F7FF] mb-4 tracking-wide">
               Give your business one permanent, reliable address online.
             </h2>
-            <p className="text-sm text-[#fff3c4]/75 leading-relaxed font-serif mb-4">
+            <p className="text-sm text-[#CBD7EC] leading-relaxed font-sans mb-4">
               Social media is helpful, but it does not belong to you. A website should do for your business online what its physical location does offline — carry its identity, catalog, and clear ways to interact.
             </p>
-            <p className="text-sm text-[#fff3c4]/75 leading-relaxed font-serif mb-6">
+            <p className="text-sm text-[#CBD7EC] leading-relaxed font-sans mb-6">
               "A small business does not need a small-looking digital presence. Simple, clear, and reliable is better than complicated and impressive-looking."
             </p>
             <div className="flex gap-4">
@@ -186,15 +186,15 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
           </div>
 
           <div className="lg:col-span-6">
-            <div className="relative rounded-2xl overflow-hidden border border-[rgba(212,175,55,0.25)] shadow-2xl">
+            <div className="relative rounded-2xl overflow-hidden border border-[rgba(34,228,255,0.25)] shadow-[0_16px_50px_rgba(0,0,0,0.85),0_0_24px_rgba(34,228,255,0.2)]">
               <img 
                 src="/assets/images/creative_team_workspace_1790663167313.jpg" 
                 alt="Creative collaborative team in workspace"
                 referrerPolicy="no-referrer"
                 className="w-full h-80 object-cover filter brightness-90 hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
-              <div className="absolute bottom-4 left-4 right-4 text-xs font-serif text-[#fff3c4]/90 tracking-wide">
+              <div className="absolute inset-0 bg-gradient-to-t from-[#040914] via-transparent to-transparent opacity-85" />
+              <div className="absolute bottom-4 left-4 right-4 text-xs font-mono text-[#F2F7FF] tracking-wide">
                 <span>Waves Studio — Built with discipline and taste</span>
               </div>
             </div>
@@ -205,17 +205,17 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
         <section>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
             <div>
-              <span className="text-xs uppercase tracking-[0.25em] text-[#d4af37] block mb-2 font-serif">
+              <span className="wv-tag block mb-2">
                 Systematic Conversion
               </span>
-              <h2 className="text-2xl sm:text-3xl font-serif text-[#fff3c4]">
+              <h2 className="text-2xl sm:text-3xl font-display text-[#F2F7FF] tracking-wide">
                 The 5-Stage Customer Journey Framework
               </h2>
             </div>
             <button
               type="button"
               onClick={() => onNavigate('journey')}
-              className="text-xs uppercase tracking-widest text-[#d4af37] hover:text-[#fff3c4] transition-colors font-serif"
+              className="text-xs uppercase tracking-widest text-[#22E4FF] hover:text-[#2CFFB0] transition-colors font-mono"
             >
               View Full Journey Details →
             </button>
@@ -225,14 +225,14 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
             {CUSTOMER_JOURNEY_STAGES.map((s) => (
               <div key={s.step} className="gold-card flex flex-col justify-between">
                 <div>
-                  <span className="text-xs font-serif text-[#d4af37] uppercase tracking-wider block mb-2">
+                  <span className="text-xs font-mono text-[#22E4FF] uppercase tracking-wider block mb-2 font-bold">
                     0{s.step}. {s.stage}
                   </span>
-                  <p className="text-xs text-[#fff3c4]/80 leading-relaxed font-serif">
+                  <p className="text-xs text-[#CBD7EC] leading-relaxed font-sans">
                     {s.purpose}
                   </p>
                 </div>
-                <div className="mt-4 pt-3 border-t border-[rgba(212,175,55,0.15)] text-[11px] text-[#d4af37]/80 font-serif">
+                <div className="mt-4 pt-3 border-t border-[rgba(34,228,255,0.2)] text-[11px] text-[#2CFFB0] font-mono">
                   {s.exampleFeatures[0]}
                 </div>
               </div>
@@ -244,17 +244,17 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
         <section>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
             <div>
-              <span className="text-xs uppercase tracking-[0.25em] text-[#d4af37] block mb-2 font-serif">
+              <span className="wv-tag block mb-2">
                 Tailored Scope
               </span>
-              <h2 className="text-2xl sm:text-3xl font-serif text-[#fff3c4]">
+              <h2 className="text-2xl sm:text-3xl font-display text-[#F2F7FF] tracking-wide">
                 Choose the right scope for your business
               </h2>
             </div>
             <button
               type="button"
               onClick={() => onNavigate('services')}
-              className="text-xs uppercase tracking-widest text-[#d4af37] hover:text-[#fff3c4] transition-colors font-serif"
+              className="text-xs uppercase tracking-widest text-[#22E4FF] hover:text-[#2CFFB0] transition-colors font-mono"
             >
               Compare All Deliverables →
             </button>
@@ -267,23 +267,23 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
                 <div 
                   key={level.id} 
                   className={`gold-card flex flex-col justify-between ${
-                    isGrowth ? 'border-[#d4af37] bg-[rgba(212,175,55,0.12)]' : ''
+                    isGrowth ? 'border-[#22E4FF] shadow-[0_0_25px_rgba(34,228,255,0.3)] bg-[rgba(34,228,255,0.08)]' : ''
                   }`}
                 >
                   <div>
-                    <span className="text-xs uppercase tracking-widest text-[#d4af37] block mb-1 font-serif">
+                    <span className="text-xs uppercase tracking-widest text-[#22E4FF] block mb-1 font-mono">
                       Level
                     </span>
-                    <h3 className="text-2xl font-serif text-[#fff3c4] mb-1">{level.name}</h3>
-                    <p className="text-xs text-[#d4af37]/90 font-serif mb-4">{level.tagline}</p>
-                    <p className="text-xs text-[#fff3c4]/75 mb-6 leading-relaxed font-serif">
+                    <h3 className="text-2xl font-display text-[#F2F7FF] mb-1 tracking-wide">{level.name}</h3>
+                    <p className="text-xs text-[#2CFFB0] font-mono mb-4">{level.tagline}</p>
+                    <p className="text-xs text-[#CBD7EC] mb-6 leading-relaxed font-sans">
                       {level.bestFor}
                     </p>
 
-                    <div className="space-y-2 mb-6 pt-4 border-t border-[rgba(212,175,55,0.18)]">
+                    <div className="space-y-2 mb-6 pt-4 border-t border-[rgba(34,228,255,0.18)]">
                       {level.features.slice(0, 4).map((f, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs text-[#fff3c4]/80 font-serif">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37] mt-1.5 shrink-0" />
+                        <div key={i} className="flex items-start gap-2 text-xs text-[#CBD7EC] font-sans">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#22E4FF] shadow-[0_0_8px_#22E4FF] mt-1.5 shrink-0" />
                           <span>{f}</span>
                         </div>
                       ))}
@@ -306,13 +306,13 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
         {/* Section: Direct Call to Action */}
         <section className="gold-card text-center p-8 sm:p-12 relative overflow-hidden">
           <div className="relative z-10 max-w-2xl mx-auto">
-            <span className="text-xs uppercase tracking-[0.25em] text-[#d4af37] block mb-2 font-serif">
+            <span className="wv-tag block mb-2">
               Step 1: Conversation
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#fff3c4] mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display text-[#F2F7FF] mb-4 tracking-wide">
               Ready to give your business its digital home?
             </h2>
-            <p className="text-sm text-[#fff3c4]/80 leading-relaxed font-serif mb-8">
+            <p className="text-sm sm:text-base text-[#CBD7EC] leading-relaxed font-sans mb-8">
               We learn about your business, recommend the right service level, and provide a clear written scope before any work begins.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

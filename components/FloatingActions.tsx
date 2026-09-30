@@ -22,7 +22,7 @@ const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenQuote }) => {
         title="Request a Project Quote"
       >
         <svg 
-          className="w-4 h-4 text-[#d4af37] group-hover:rotate-12 transition-transform" 
+          className="w-4 h-4 text-[#22E4FF] group-hover:rotate-12 transition-transform" 
           viewBox="0 0 24 24" 
           fill="none" 
           stroke="currentColor" 

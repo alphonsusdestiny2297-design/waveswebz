@@ -19,7 +19,7 @@ const ProcessPage: React.FC<ProcessPageProps> = ({ onOpenQuote }) => {
         style={{ backgroundImage: `url('/assets/images/urban_golden_hour_street_1790663189316.jpg')` }}
       >
         <div className="page-header-overlay" />
-        <h1 className="cursive gold-text">how it works</h1>
+        <h1 className="font-display font-black uppercase tracking-[0.14em] neon-text">how it works</h1>
         <p className="page-header-subtitle">From Initial Conversation to Handover & Support</p>
       </div>
 
@@ -27,13 +27,13 @@ const ProcessPage: React.FC<ProcessPageProps> = ({ onOpenQuote }) => {
         
         {/* Intro */}
         <section>
-          <span className="text-xs uppercase tracking-[0.25em] text-[#d4af37] block mb-2 font-serif">
+          <span className="wv-tag block mb-2">
             Engineering Methodology
           </span>
-          <h2 className="text-3xl sm:text-4xl font-serif text-[#fff3c4] mb-4">
+          <h2 className="text-3xl sm:text-4xl font-display text-[#F2F7FF] mb-4 tracking-wide">
             A 9-step build process with complete clarity
           </h2>
-          <p className="text-sm sm:text-base text-[#fff3c4]/80 font-serif leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg text-[#CBD7EC] font-sans leading-relaxed max-w-3xl">
             You always know what is being built, what is required from you, and when each milestone will be reached. No technical jargon, no surprises.
           </p>
         </section>
@@ -43,39 +43,39 @@ const ProcessPage: React.FC<ProcessPageProps> = ({ onOpenQuote }) => {
           {PROCESS_STEPS.map((s) => (
             <div key={s.stepNumber} className="gold-card flex flex-col justify-between">
               <div>
-                <div className="flex items-center justify-between pb-3 border-b border-[rgba(212,175,55,0.2)] mb-3">
-                  <span className="cursive text-3xl text-[#d4af37]">
+                <div className="flex items-center justify-between pb-3 border-b border-[rgba(255,255,255,0.18)] mb-3">
+                  <span className="font-display font-black text-2xl text-[#22E4FF] font-mono">
                     0{s.stepNumber}.
                   </span>
-                  <span className="text-xs uppercase tracking-wider text-[#d4af37]/80 font-serif">
+                  <span className="text-xs uppercase tracking-wider text-[#22E4FF] font-mono">
                     Milestone
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-serif text-[#fff3c4] mb-2">{s.name}</h3>
+                <h3 className="text-xl font-display text-[#F2F7FF] mb-2 tracking-wide">{s.name}</h3>
 
                 <div className="space-y-3 mb-4">
                   <div>
-                    <h4 className="text-[11px] uppercase tracking-wider text-[#d4af37] font-serif mb-1">
+                    <h4 className="text-[11px] uppercase tracking-wider text-[#22E4FF] font-mono mb-1">
                       What Waves Does:
                     </h4>
-                    <p className="text-xs sm:text-sm text-[#fff3c4]/80 font-serif leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#CBD7EC] font-sans leading-relaxed">
                       {s.whatHappens}
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="text-[11px] uppercase tracking-wider text-[#d4af37] font-serif mb-1">
+                    <h4 className="text-[11px] uppercase tracking-wider text-[#2CFFB0] font-mono mb-1">
                       Your Role:
                     </h4>
-                    <p className="text-xs sm:text-sm text-[#fff3c4]/70 font-serif leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#CBD7EC]/80 font-sans leading-relaxed">
                       {s.clientRole}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-[rgba(212,175,55,0.15)] text-[11px] text-[#d4af37]/70 font-serif">
+              <div className="pt-3 border-t border-[rgba(34,228,255,0.18)] text-[11px] text-[#22E4FF] font-mono">
                 Step {s.stepNumber} of 9
               </div>
             </div>
@@ -84,10 +84,10 @@ const ProcessPage: React.FC<ProcessPageProps> = ({ onOpenQuote }) => {
 
         {/* CTA */}
         <section className="gold-card text-center p-8 sm:p-12">
-          <h2 className="text-2xl sm:text-3xl font-serif text-[#fff3c4] mb-4">
+          <h2 className="text-2xl sm:text-3xl font-display text-[#F2F7FF] mb-4 tracking-wide">
             Ready to begin with Step 1: Conversation?
           </h2>
-          <p className="text-sm text-[#fff3c4]/80 leading-relaxed font-serif mb-6 max-w-xl mx-auto">
+          <p className="text-sm sm:text-base text-[#CBD7EC] leading-relaxed font-sans mb-6 max-w-xl mx-auto">
             Tell us about your business, the customers you serve, and how you want to be discovered.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">

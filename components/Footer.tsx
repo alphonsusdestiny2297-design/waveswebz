@@ -14,7 +14,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
   return (
-    <footer className="bg-[#0a0a0a] text-[#fff3c4]/70 pt-16 pb-12 px-6 lg:px-12 border-t border-[rgba(212,175,55,0.2)] font-serif mt-16">
+    <footer className="bg-[#040914]/85 backdrop-blur-2xl text-[#A9BBDA] pt-16 pb-12 px-6 lg:px-12 border-t border-[rgba(255,255,255,0.18)] font-sans mt-16 relative z-10 shadow-2xl">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
         
         {/* Brand Column (5 cols) */}
@@ -22,16 +22,16 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
           <button 
             type="button"
             onClick={() => onNavigate('home')}
-            className="cursive gold-text text-4xl block text-left"
+            className="font-display font-black uppercase tracking-[0.16em] neon-text text-3xl block text-left"
           >
             waves
           </button>
           
-          <p className="text-xs uppercase tracking-[0.2em] text-[#d4af37]">
+          <p className="text-xs uppercase tracking-[0.25em] text-[#22E4FF] font-mono">
             {BRAND_TAGLINE}
           </p>
 
-          <p className="text-xs sm:text-sm text-[#fff3c4]/70 leading-relaxed max-w-sm">
+          <p className="text-xs sm:text-sm text-[#A9BBDA] leading-relaxed max-w-sm">
             Waves builds fast, reliable, mobile-first business websites for Nigerian SMEs — professional digital homes that help customers discover, understand, trust, enquire, and act.
           </p>
 
@@ -40,7 +40,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="cta text-xs py-2 px-4"
+              className="wv-btn wv-btn--primary text-xs py-2 px-4"
             >
               WhatsApp Direct
             </a>
@@ -57,7 +57,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
               className="cta cta-secondary text-xs py-2 px-4 flex items-center gap-1.5"
               title="Download full project folder archive (.zip)"
             >
-              <svg className="w-3.5 h-3.5 text-[#d4af37]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-3.5 h-3.5 text-[#22E4FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
               <span>Download ZIP</span>
@@ -67,42 +67,42 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
 
         {/* Navigation Links (3 cols) */}
         <div className="md:col-span-3 space-y-3">
-          <h4 className="text-xs uppercase tracking-widest text-[#d4af37] font-serif">
+          <h4 className="text-xs uppercase tracking-widest text-[#22E4FF] font-mono">
             Navigation
           </h4>
-          <ul className="space-y-2 text-xs text-[#fff3c4]/80">
+          <ul className="space-y-2 text-xs text-[#F2F7FF]/80">
             <li>
-              <button onClick={() => onNavigate('home')} className="hover:text-[#d4af37] transition-colors">
+              <button onClick={() => onNavigate('home')} className="hover:text-[#22E4FF] transition-colors">
                 Home (Slider & Overview)
               </button>
             </li>
             <li>
-              <button onClick={() => onNavigate('about')} className="hover:text-[#d4af37] transition-colors">
+              <button onClick={() => onNavigate('about')} className="hover:text-[#22E4FF] transition-colors">
                 Digital Home & Philosophy
               </button>
             </li>
             <li>
-              <button onClick={() => onNavigate('journey')} className="hover:text-[#d4af37] transition-colors">
+              <button onClick={() => onNavigate('journey')} className="hover:text-[#22E4FF] transition-colors">
                 Customer Journey (5 Stages)
               </button>
             </li>
             <li>
-              <button onClick={() => onNavigate('services')} className="hover:text-[#d4af37] transition-colors">
+              <button onClick={() => onNavigate('services')} className="hover:text-[#22E4FF] transition-colors">
                 Service Levels (Launch, Growth, AI)
               </button>
             </li>
             <li>
-              <button onClick={() => onNavigate('process')} className="hover:text-[#d4af37] transition-colors">
+              <button onClick={() => onNavigate('process')} className="hover:text-[#22E4FF] transition-colors">
                 How It Works (9 Steps)
               </button>
             </li>
             <li>
-              <button onClick={() => onNavigate('ai')} className="hover:text-[#d4af37] transition-colors">
+              <button onClick={() => onNavigate('ai')} className="hover:text-[#22E4FF] transition-colors">
                 Modular AI & Safety
               </button>
             </li>
             <li>
-              <button onClick={() => onNavigate('contact')} className="hover:text-[#d4af37] transition-colors">
+              <button onClick={() => onNavigate('contact')} className="hover:text-[#22E4FF] transition-colors">
                 Contact & Scope
               </button>
             </li>
@@ -111,13 +111,13 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
 
         {/* Commitment (4 cols) */}
         <div className="md:col-span-4 space-y-3">
-          <h4 className="text-xs uppercase tracking-widest text-[#d4af37] font-serif">
+          <h4 className="text-xs uppercase tracking-widest text-[#22E4FF] font-mono">
             Our Standard
           </h4>
-          <blockquote className="text-xs sm:text-sm text-[#fff3c4]/90 italic leading-relaxed border-l-2 border-[#d4af37] pl-3">
+          <blockquote className="text-xs sm:text-sm text-[#F2F7FF] italic leading-relaxed border-l-2 border-[#22E4FF] pl-3">
             "A website should work for the business, not just look good. Simple, clear, and reliable is better than complicated and impressive-looking."
           </blockquote>
-          <p className="text-[11px] text-[#fff3c4]/60 leading-relaxed pt-2">
+          <p className="text-[11px] text-[#A9BBDA] leading-relaxed pt-2 font-mono">
             No false promises about magic traffic. Transparent scope, mobile-first performance, and dedicated craftsmanship.
           </p>
         </div>
@@ -125,14 +125,14 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="max-w-6xl mx-auto pt-6 border-t border-[rgba(212,175,55,0.15)] flex flex-col sm:flex-row justify-between items-center text-xs text-[#fff3c4]/50 gap-4">
+      <div className="max-w-6xl mx-auto pt-6 border-t border-[rgba(255,255,255,0.15)] flex flex-col sm:flex-row justify-between items-center text-xs text-[#A9BBDA]/70 gap-4">
         <p>© 2026 Waves. Built for Nigerian Businesses.</p>
-        <div className="flex items-center gap-4 text-[11px] tracking-wider uppercase text-[#d4af37]/80">
+        <div className="flex items-center gap-4 text-[11px] tracking-wider uppercase text-[#22E4FF] font-mono">
           <span>Mobile-First</span>
           <span>·</span>
           <span>WhatsApp Integrated</span>
           <span>·</span>
-          <span>Liquid Gold Aesthetic</span>
+          <span>Liquid Glass UI</span>
         </div>
       </div>
     </footer>

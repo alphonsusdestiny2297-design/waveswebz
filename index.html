@@ -7,6 +7,38 @@
     <meta name="description" content="Waves builds fast, reliable, mobile-first business websites for Nigerian SMEs — professional digital homes that help customers discover, understand, trust, enquire, and act." />
     <meta property="og:title" content="Waves — Your Business. Your Digital Home." />
     <meta property="og:description" content="Fast, reliable, mobile-first business websites for Nigerian SMEs. Professional digital homes designed for real customer action." />
+    <script>
+      // Early safety guard against browser extension unhandled rejections (e.g. MetaMask / Web3 wallet injectors)
+      (function() {
+        function shouldSuppress(msg, src) {
+          var str = (msg || '').toLowerCase();
+          var s = (src || '').toLowerCase();
+          return str.includes('metamask') ||
+                 str.includes('ethereum') ||
+                 str.includes('wallet') ||
+                 s.includes('chrome-extension') ||
+                 s.includes('moz-extension');
+        }
+        window.addEventListener('unhandledrejection', function(event) {
+          var reason = event && event.reason;
+          var msg = (reason && (reason.message || reason.stack || String(reason))) || '';
+          if (shouldSuppress(msg, '')) {
+            event.preventDefault();
+            if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+            if (event.stopPropagation) event.stopPropagation();
+          }
+        }, true);
+        window.addEventListener('error', function(event) {
+          var msg = (event && (event.message || '')) || '';
+          var src = (event && (event.filename || '')) || '';
+          if (shouldSuppress(msg, src)) {
+            event.preventDefault();
+            if (event.stopImmediatePropagation) event.stopImmediatePropagation();
+            if (event.stopPropagation) event.stopPropagation();
+          }
+        }, true);
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -30,8 +62,10 @@
               }
             },
             fontFamily: {
-              sans: ['Plus Jakarta Sans', 'system-ui', '-apple-system', 'sans-serif'],
-              heading: ['Plus Jakarta Sans', 'sans-serif'],
+              display: ['Molgan', 'Orbitron', 'Space Grotesk', 'system-ui', 'sans-serif'],
+              sans: ['Space Grotesk', 'system-ui', '-apple-system', 'sans-serif'],
+              heading: ['Molgan', 'Orbitron', 'Space Grotesk', 'sans-serif'],
+              mono: ['JetBrains Mono', 'ui-monospace', 'monospace']
             }
           }
         }
@@ -39,34 +73,38 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
       html {
         scroll-behavior: smooth;
         scroll-padding-top: 80px;
-        background-color: #F8FAFC;
-        color: #0F172A;
+        background-color: #040914;
+        color: #F2F7FF;
       }
 
       body {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        background-color: #F8FAFC;
-        color: #0F172A;
+        font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+        background-color: #040914;
+        color: #F2F7FF;
+        overflow-x: hidden;
       }
 
-      /* Clean subtle custom scrollbar */
+      /* Clean Liquid Glass custom scrollbars */
       ::-webkit-scrollbar {
-        width: 6px;
+        width: 7px;
+        height: 7px;
       }
       ::-webkit-scrollbar-track {
-        background: #F1F5F9;
+        background: #040914;
       }
       ::-webkit-scrollbar-thumb {
-        background: #CBD5E1;
-        border-radius: 3px;
+        background: rgba(34, 228, 255, 0.35);
+        border-radius: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #94A3B8;
+        background: rgba(34, 228, 255, 0.65);
+        box-shadow: 0 0 10px rgba(34, 228, 255, 0.5);
       }
     </style>
   <script type="importmap">
@@ -81,7 +119,7 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-[#F8FAFC] text-slate-900 antialiased selection:bg-brand-500/20 selection:text-brand-900">
+  <body class="bg-[#040914] text-[#F2F7FF] antialiased selection:bg-[#22E4FF]/30 selection:text-[#FFFFFF]">
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

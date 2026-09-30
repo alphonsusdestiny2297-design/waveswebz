@@ -88,7 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
     };
   }, [isDragging]);
 
-  const handleStartDrag = (e: React.PointerEvent | React.MouseEvent) => {
+  const handleStartDrag = (e: React.PointerEvent | React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     setIsDragging(true);
   };
@@ -100,7 +100,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
       label: 'Home',
       icon: (active) => (
         <svg 
-          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#fff3c4]' : 'text-[#d4af37]'}`} 
+          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#22E4FF] drop-shadow-[0_0_8px_#22E4FF]' : 'text-[#A9BBDA] group-hover:text-[#22E4FF]'}`} 
           viewBox="0 0 24 24" 
           fill="none" 
           stroke="currentColor" 
@@ -116,7 +116,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
       label: 'Digital Home',
       icon: (active) => (
         <svg 
-          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#fff3c4]' : 'text-[#d4af37]'}`} 
+          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#22E4FF] drop-shadow-[0_0_8px_#22E4FF]' : 'text-[#A9BBDA] group-hover:text-[#22E4FF]'}`} 
           viewBox="0 0 24 24" 
           fill="none" 
           stroke="currentColor" 
@@ -132,7 +132,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
       label: 'Customer Journey',
       icon: (active) => (
         <svg 
-          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#fff3c4]' : 'text-[#d4af37]'}`} 
+          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#22E4FF] drop-shadow-[0_0_8px_#22E4FF]' : 'text-[#A9BBDA] group-hover:text-[#22E4FF]'}`} 
           viewBox="0 0 24 24" 
           fill="none" 
           stroke="currentColor" 
@@ -149,7 +149,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
       label: 'Service Levels',
       icon: (active) => (
         <svg 
-          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#fff3c4]' : 'text-[#d4af37]'}`} 
+          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#22E4FF] drop-shadow-[0_0_8px_#22E4FF]' : 'text-[#A9BBDA] group-hover:text-[#22E4FF]'}`} 
           viewBox="0 0 24 24" 
           fill="none" 
           stroke="currentColor" 
@@ -167,7 +167,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
       label: 'How It Works',
       icon: (active) => (
         <svg 
-          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#fff3c4]' : 'text-[#d4af37]'}`} 
+          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#22E4FF] drop-shadow-[0_0_8px_#22E4FF]' : 'text-[#A9BBDA] group-hover:text-[#22E4FF]'}`} 
           viewBox="0 0 24 24" 
           fill="none" 
           stroke="currentColor" 
@@ -185,7 +185,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
       label: 'AI Modules',
       icon: (active) => (
         <svg 
-          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#fff3c4]' : 'text-[#d4af37]'}`} 
+          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#22E4FF] drop-shadow-[0_0_8px_#22E4FF]' : 'text-[#A9BBDA] group-hover:text-[#22E4FF]'}`} 
           viewBox="0 0 24 24" 
           fill="none" 
           stroke="currentColor" 
@@ -202,7 +202,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
       label: 'Contact',
       icon: (active) => (
         <svg 
-          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#fff3c4]' : 'text-[#d4af37]'}`} 
+          className={`w-5 h-5 shrink-0 transition-colors ${active ? 'text-[#22E4FF] drop-shadow-[0_0_8px_#22E4FF]' : 'text-[#A9BBDA] group-hover:text-[#22E4FF]'}`} 
           viewBox="0 0 24 24" 
           fill="none" 
           stroke="currentColor" 
@@ -229,12 +229,12 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
           MOBILE STICKY TOPBAR WITH ACCESSIBLE HAMBURGER (< 768px)
           Always visible on mobile as requested
          ============================================================ */}
-      <header className="md:hidden sticky top-0 left-0 right-0 z-40 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[rgba(212,175,55,0.25)] px-4 py-3 flex items-center justify-between">
+      <header className="md:hidden sticky top-0 left-0 right-0 z-40 bg-[#040914]/80 backdrop-blur-xl border-b border-[rgba(255,255,255,0.18)] px-4 py-3 flex items-center justify-between shadow-lg">
         {/* Hamburger Toggle Button */}
         <button
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-2 text-[#d4af37] hover:text-[#fff3c4] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37] rounded-lg transition-colors"
+          className="p-2 text-[#22E4FF] hover:text-[#fff] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#22E4FF] rounded-lg transition-colors"
           aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={mobileMenuOpen}
         >
@@ -253,14 +253,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
         <button
           type="button"
           onClick={() => handleNavClick('home')}
-          className="text-2xl font-serif focus:outline-none"
+          className="text-xl font-display focus:outline-none"
         >
-          <span className="cursive gold-text inline-block">waves</span>
+          <span className="font-display font-black uppercase tracking-[0.16em] neon-text inline-block">waves</span>
         </button>
 
         {/* Subtitle tag */}
-        <span className="text-[10px] tracking-widest uppercase text-[#d4af37]/80 font-serif">
-          SME Studio
+        <span className="text-[10px] tracking-widest uppercase text-[#22E4FF] font-mono">
+          Liquid Glass
         </span>
       </header>
 
@@ -268,31 +268,31 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
           MOBILE SLIDE-OUT DRAWER OVERLAY (< 768px)
          ============================================================ */}
       <div 
-        className={`fixed inset-0 z-50 md:hidden bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 z-50 md:hidden bg-black/75 backdrop-blur-md transition-opacity duration-300 ${
           mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setMobileMenuOpen(false)}
       >
         <div 
-          className={`absolute top-0 left-0 w-4/5 max-w-xs h-full bg-[#0a0a0a] border-r border-[rgba(212,175,55,0.3)] shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 ${
+          className={`absolute top-0 left-0 w-4/5 max-w-xs h-full bg-[#040914]/95 border-r border-[rgba(255,255,255,0.22)] shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 ${
             mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
           onClick={(e) => e.stopPropagation()}
         >
           <div>
             {/* Drawer Header */}
-            <div className="flex items-center justify-between pb-5 border-b border-[rgba(212,175,55,0.2)]">
+            <div className="flex items-center justify-between pb-5 border-b border-[rgba(255,255,255,0.18)]">
               <button
                 type="button"
                 onClick={() => handleNavClick('home')}
-                className="text-3xl font-serif text-left focus:outline-none"
+                className="text-2xl font-display text-left focus:outline-none"
               >
-                <span className="cursive gold-text inline-block">waves</span>
+                <span className="font-display font-black uppercase tracking-[0.16em] neon-text inline-block">waves</span>
               </button>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-1.5 text-[#fff3c4]/70 hover:text-[#d4af37] transition-colors rounded-lg"
+                className="p-1.5 text-[#A9BBDA] hover:text-[#22E4FF] transition-colors rounded-lg"
                 aria-label="Close menu"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -310,10 +310,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
                     key={item.id}
                     type="button"
                     onClick={() => handleNavClick(item.id)}
-                    className={`text-left px-3.5 py-3 rounded-lg text-sm font-serif transition-colors flex items-center gap-3 ${
+                    className={`text-left px-3.5 py-3 rounded-lg text-sm transition-colors flex items-center gap-3 ${
                       isActive 
-                        ? 'bg-[rgba(212,175,55,0.12)] text-[#fff3c4] border-l-2 border-[#d4af37] font-semibold' 
-                        : 'text-[#fff3c4]/75 hover:bg-[rgba(212,175,55,0.06)] hover:text-[#fff3c4]'
+                        ? 'bg-[rgba(34,228,255,0.14)] text-[#F2F7FF] border-l-2 border-[#22E4FF] font-semibold' 
+                        : 'text-[#A9BBDA] hover:bg-[rgba(255,255,255,0.06)] hover:text-[#F2F7FF]'
                     }`}
                   >
                     {item.icon(isActive)}
@@ -324,10 +324,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
             </nav>
           </div>
 
-          <div className="pt-6 border-t border-[rgba(212,175,55,0.15)] text-center">
-            <p className="text-[11px] tracking-widest uppercase text-[#fff3c4]/60 font-serif leading-relaxed">
+          <div className="pt-6 border-t border-[rgba(255,255,255,0.15)] text-center">
+            <p className="text-[11px] tracking-widest uppercase text-[#A9BBDA]/75 font-mono leading-relaxed">
               Your Business. <br />
-              <span className="text-[#d4af37]">Your Digital Home.</span>
+              <span className="text-[#22E4FF]">Your Digital Home.</span>
             </p>
           </div>
         </div>
@@ -360,14 +360,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
           <button
             type="button"
             onClick={() => onNavigate('home')}
-            className={`nav-brand font-serif text-left block focus:outline-none w-full ${isIconOnly ? 'mb-6 text-center' : 'mb-8'}`}
+            className={`nav-brand text-left block focus:outline-none w-full ${isIconOnly ? 'mb-6 text-center' : 'mb-8'}`}
             aria-label="Waves Home"
             title="Waves Home"
           >
             {isIconOnly ? (
-              <span className="cursive gold-text inline-block text-3xl font-bold">w</span>
+              <span className="font-display font-black uppercase tracking-wider neon-text inline-block text-2xl">w</span>
             ) : (
-              <span className="cursive gold-text inline-block text-4xl">waves</span>
+              <span className="font-display font-black uppercase tracking-[0.16em] neon-text inline-block text-3xl">waves</span>
             )}
           </button>
 
@@ -394,7 +394,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
 
                   {/* Tooltip on Icon-Only Mode */}
                   {isIconOnly && (
-                    <span className="pointer-events-none absolute left-full ml-3 z-50 whitespace-nowrap rounded-md bg-[#0a0a0a] px-2.5 py-1 text-xs text-[#fff3c4] border border-[#d4af37]/40 shadow-xl opacity-0 group-hover:opacity-100 transition-opacity font-serif">
+                    <span className="pointer-events-none absolute left-full ml-3 z-50 whitespace-nowrap rounded-md bg-[#040914] px-2.5 py-1 text-xs text-[#F2F7FF] border border-[rgba(34,228,255,0.4)] shadow-xl opacity-0 group-hover:opacity-100 transition-opacity font-mono">
                       {item.label}
                     </span>
                   )}
@@ -405,13 +405,13 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
         </div>
 
         {/* Sidebar footer tagline */}
-        <div className={`pt-6 border-t border-[rgba(212,175,55,0.18)] w-full ${isIconOnly ? 'text-center' : ''}`}>
+        <div className={`pt-6 border-t border-[rgba(255,255,255,0.15)] w-full ${isIconOnly ? 'text-center' : ''}`}>
           {isIconOnly ? (
-            <span className="text-[#d4af37] text-xs font-serif block">✨</span>
+            <span className="text-[#22E4FF] text-xs font-mono block">●</span>
           ) : (
-            <p className="text-[11px] tracking-widest uppercase text-[#fff3c4]/60 font-serif leading-relaxed">
+            <p className="text-[11px] tracking-widest uppercase text-[#A9BBDA]/75 font-mono leading-relaxed">
               Your Business. <br />
-              <span className="text-[#d4af37]">Your Digital Home.</span>
+              <span className="text-[#22E4FF]">Your Digital Home.</span>
             </p>
           )}
         </div>

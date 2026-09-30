@@ -98,11 +98,42 @@ function App() {
     setIsQuoteOpen(true);
   };
 
+  // Liquid Glass interactive cursor/touch illumination
+  useEffect(() => {
+    const handlePointerMove = (e: PointerEvent | TouchEvent) => {
+      const p = 'touches' in e ? e.touches[0] : (e as PointerEvent);
+      if (!p) return;
+      const glassElements = document.querySelectorAll<HTMLElement>('.wv-glass, .gold-card, .contact-gold-card, .site-sidebar');
+      glassElements.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (p.clientX >= r.left - 60 && p.clientX <= r.right + 60 && p.clientY >= r.top - 60 && p.clientY <= r.bottom + 60) {
+          el.style.setProperty('--mx', `${p.clientX - r.left}px`);
+          el.style.setProperty('--my', `${p.clientY - r.top}px`);
+        }
+      });
+    };
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    window.addEventListener('touchmove', handlePointerMove, { passive: true });
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('touchmove', handlePointerMove);
+    };
+  }, []);
+
   const hideNavbarOnSlider = currentPage === 'home' && isAtSlider;
 
   return (
-    <div className="min-h-screen bg-[#111111] text-[#fff3c4] font-serif antialiased selection:bg-[#d4af37]/30 selection:text-[#fff3c4] flex flex-col justify-between relative overflow-x-hidden">
+    <div className="wv-body min-h-screen bg-[#040914] text-[#F2F7FF] font-sans antialiased selection:bg-[#22E4FF]/30 selection:text-[#FFFFFF] flex flex-col justify-between relative overflow-x-hidden">
       
+      {/* Background Colour Washes (Glass needs vibrant luminous colour behind it) */}
+      <div className="wv-bg" aria-hidden="true">
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+
       {/* Sidebar Navbar (Smoothly hides when at slider to give the full picture) */}
       <Navbar 
         currentPage={currentPage}

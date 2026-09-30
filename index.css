@@ -1,29 +1,100 @@
-/* ============================================================
-   waves — shared stylesheet & liquid gold theme
-   ============================================================ */
+/* ==========================================================================
+   WAVES — Liquid Glass UI  (v1)
+   Techy, futuristic, mobile-first. Theme follows the device (dark / light).
+   Prefix: wv-   |   Fonts: Molgan (headings), Space Grotesk + JetBrains Mono (body)
+   ========================================================================== */
 
-:root {
-  color-scheme: dark;
-
-  --gold-1: #7a5c1e;   /* deep gold  */
-  --gold-2: #d4af37;   /* rich gold  */
-  --gold-3: #fff3c4;   /* pale gold  */
-  --gold-highlight: #f9e27d;
-  --gold-dark: #b8860b;
-  --ink:    #0a0a0a;   /* near black */
-  --paper:  #111111;   /* page bg    */
-  --paper-card: rgba(212, 175, 55, 0.06);
-  --paper-border: rgba(212, 175, 55, 0.22);
-
-  --nav-w: 230px;      /* live sidebar width — JS overwrites on resize */
-  --nav-max: 25%;
-
-  --gold-gradient: linear-gradient(110deg,
-      var(--gold-1) 0%,  var(--gold-2) 20%,
-      var(--gold-3) 38%, var(--gold-highlight) 50%,
-      var(--gold-dark) 65%, var(--gold-1) 100%);
+/* 1. FONT ---------------------------------------------------------------- */
+@font-face {
+  font-family: 'Molgan';
+  src: url('/fonts/Molgan-Regular.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 
+/* 2. DESIGN TOKENS (dark is default) ------------------------------------ */
+:root {
+  color-scheme: dark light;
+
+  /* colour */
+  --wv-bg: #040914;
+  --wv-text: #F2F7FF;
+  --wv-muted: #CBD7EC;
+  --wv-cyan: #22E4FF;
+  --wv-violet: #8B5CF6;
+  --wv-mint: #2CFFB0;
+  --wv-pink: #FF5CC8;
+  --wv-ink: #03101F;               /* text on bright gradients */
+
+  /* glass */
+  --wv-glass-1: rgba(255, 255, 255, 0.16);
+  --wv-glass-2: rgba(255, 255, 255, 0.04);
+  --wv-glass-border: rgba(255, 255, 255, 0.22);
+  --wv-glass-hi: rgba(255, 255, 255, 0.55);   /* top-edge highlight */
+  --wv-shadow: rgba(0, 0, 0, 0.45);
+  --wv-blur: 24px;
+  --wv-saturate: 190%;
+
+  /* type */
+  --wv-font-display: 'Molgan', 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+  --wv-font-body: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wv-font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  /* shape / space */
+  --wv-r-sm: 14px;
+  --wv-r-md: 20px;
+  --wv-r-lg: 26px;
+  --wv-r-pill: 99px;
+  --wv-max: 1180px;
+
+  /* Layout & Navigation tokens */
+  --nav-w: 230px;
+  --nav-max: 25%;
+
+  /* Legacy gradient mapped to liquid glass luminescence */
+  --gold-1: #03101F;
+  --gold-2: #22E4FF;
+  --gold-3: #F2F7FF;
+  --gold-highlight: #2CFFB0;
+  --gold-dark: #8B5CF6;
+  --paper: #040914;
+  --paper-card: rgba(255, 255, 255, 0.05);
+  --paper-border: rgba(255, 255, 255, 0.20);
+  --ink: #03101F;
+
+  --gold-gradient: linear-gradient(110deg,
+      #22E4FF 0%, #8B5CF6 30%,
+      #F2F7FF 50%, #2CFFB0 75%,
+      #22E4FF 100%);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --wv-bg: #E8F1FF;
+    --wv-text: #0A1430;
+    --wv-muted: #465A80;
+    --wv-cyan: #00A6D0;
+    --wv-violet: #7048E8;
+    --wv-mint: #0DBB86;
+    --wv-pink: #E63FAE;
+    --wv-ink: #FFFFFF;
+    --wv-glass-1: rgba(255, 255, 255, 0.75);
+    --wv-glass-2: rgba(255, 255, 255, 0.35);
+    --wv-glass-border: rgba(255, 255, 255, 0.85);
+    --wv-glass-hi: #fff;
+    --wv-shadow: rgba(40, 70, 140, 0.20);
+
+    --paper: #E8F1FF;
+    --paper-card: rgba(255, 255, 255, 0.65);
+    --paper-border: rgba(255, 255, 255, 0.80);
+    --gold-1: #0A1430;
+    --gold-2: #00A6D0;
+    --gold-3: #0A1430;
+  }
+}
+
+/* 3. BASE ---------------------------------------------------------------- */
 * {
   margin: 0;
   padding: 0;
@@ -32,51 +103,272 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--paper);
-  color: rgba(255, 243, 196, 0.88);
+  background-color: var(--wv-bg);
+  color: var(--wv-text);
 }
 
-body {
-  font-family: Georgia, 'Times New Roman', serif;
-  background: var(--paper);
-  color: rgba(255, 243, 196, 0.88);
-  min-height: 100vh;
+body, .wv-body {
+  margin: 0;
+  background: var(--wv-bg);
+  color: var(--wv-text);
+  font-family: var(--wv-font-body);
+  line-height: 1.55;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
-/* ---------- Typography & Liquid Gold ---------- */
+/* 4. BACKGROUND COLOUR WASHES (glass needs vibrant luminous color behind it) */
+.wv-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.wv-bg i {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(68px);
+  opacity: 0.60;
+  animation: wv-drift 18s ease-in-out infinite alternate;
+}
+
+.wv-bg i:nth-child(1) {
+  width: 48vw;
+  height: 48vw;
+  left: -8vw;
+  top: -6vw;
+  background: var(--wv-cyan);
+}
+
+.wv-bg i:nth-child(2) {
+  width: 42vw;
+  height: 42vw;
+  right: -8vw;
+  top: 8vh;
+  background: var(--wv-violet);
+  animation-delay: -6s;
+}
+
+.wv-bg i:nth-child(3) {
+  width: 36vw;
+  height: 36vw;
+  left: 30vw;
+  top: 55vh;
+  background: var(--wv-pink);
+  opacity: 0.40;
+  animation-delay: -3s;
+}
+
+.wv-bg i:nth-child(4) {
+  width: 30vw;
+  height: 30vw;
+  right: 8vw;
+  bottom: -6vw;
+  background: var(--wv-mint);
+  opacity: 0.45;
+  animation-delay: -9s;
+}
+
+@keyframes wv-drift {
+  to {
+    transform: translate(6vw, 8vh) scale(1.15);
+  }
+}
+
+/* 5. LIQUID GLASS SURFACE ------------------------------------------------ */
+.wv-glass,
+.tech-card,
+.gold-card,
+.contact-tech-card,
+.contact-gold-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--wv-glass-1), var(--wv-glass-2));
+  -webkit-backdrop-filter: blur(var(--wv-blur)) saturate(var(--wv-saturate));
+          backdrop-filter: blur(var(--wv-blur)) saturate(var(--wv-saturate));
+  border: 1px solid var(--wv-glass-border);
+  border-radius: var(--wv-r-lg);
+  padding: 2.25rem 2rem;
+  box-shadow:
+    inset 0 1.5px 0 var(--wv-glass-hi),
+    inset 0 -1.5px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 22px rgba(255, 255, 255, 0.04),
+    0 20px 44px -12px var(--wv-shadow);
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* cursor-following light (set --mx / --my via pointer interaction) */
+.wv-glass::before,
+.tech-card::before,
+.gold-card::before,
+.contact-tech-card::before,
+.contact-gold-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(240px circle at var(--mx, 30%) var(--my, 15%), rgba(34, 228, 255, 0.28), transparent 60%);
+  opacity: 0.7;
+}
+
+/* top specular edge highlight */
+.wv-glass::after,
+.tech-card::after,
+.gold-card::after,
+.contact-tech-card::after,
+.contact-gold-card::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--wv-glass-hi), transparent);
+}
+
+.wv-glass > *,
+.tech-card > *,
+.gold-card > *,
+.contact-tech-card > *,
+.contact-gold-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.tech-card:hover,
+.gold-card:hover,
+.wv-glass:hover,
+.contact-tech-card:hover,
+.contact-gold-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: rgba(34, 228, 255, 0.5);
+  box-shadow:
+    inset 0 1.5px 0 #fff,
+    0 26px 50px -12px rgba(34, 228, 255, 0.22),
+    0 0 24px rgba(34, 228, 255, 0.2);
+}
+
+/* fallback if backdrop-filter is unsupported */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .wv-glass,
+  .gold-card,
+  .contact-gold-card {
+    background: rgba(4, 9, 20, 0.88);
+  }
+}
+
+/* 6. TYPOGRAPHY ---------------------------------------------------------- */
 .cursive {
-  font-family: 'Great Vibes', 'Snell Roundhand', 'Brush Script MT',
-               'Segoe Script', 'Lucida Handwriting', cursive;
+  font-family: var(--wv-font-display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 900;
 }
 
 .font-serif-heading {
-  font-family: 'Cinzel', Georgia, 'Times New Roman', serif;
+  font-family: var(--wv-font-display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-.gold-text {
-  background: var(--gold-gradient);
+.wv-logo {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  font: 900 22px var(--wv-font-display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wv-text);
+}
+
+.wv-logo i {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #fff, var(--wv-cyan) 35%, var(--wv-violet));
+  box-shadow: 0 0 18px var(--wv-cyan);
+}
+
+.wv-tag {
+  font: 600 12px var(--wv-font-mono);
+  color: var(--wv-cyan);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.wv-tag::after {
+  content: '_';
+  animation: wv-blink 1s steps(1) infinite;
+}
+
+@keyframes wv-blink {
+  50% { opacity: 0; }
+}
+
+.wv-h1 {
+  font: 900 clamp(30px, 5.2vw, 54px)/1.1 var(--wv-font-display);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 14px 0 18px;
+}
+
+.wv-h1 span,
+.gold-text,
+.neon-text,
+.tech-text {
+  background: linear-gradient(90deg, #22E4FF 0%, #3B82F6 26%, #8B5CF6 52%, #2CFFB0 78%, #22E4FF 100%);
   background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
   display: inline-block;
-  animation: shimmer 5s linear infinite;
+  animation: wv-shimmer 7s linear infinite;
+  filter: drop-shadow(0 0 20px rgba(34, 228, 255, 0.4));
 }
 
-@keyframes shimmer {
+@keyframes wv-shimmer {
   0%   { background-position: 0% 0; }
   100% { background-position: 250% 0; }
 }
 
-:focus-visible {
-  outline: 2px solid var(--gold-2);
-  outline-offset: 3px;
-  border-radius: 3px;
+.wv-h2 {
+  font: 700 clamp(20px, 3.4vw, 28px) var(--wv-font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 48px 0 8px;
 }
 
-/* ---------- Sidebar Navbar (Desktop) ---------- */
+.wv-h2::before {
+  content: '// ';
+  color: var(--wv-cyan);
+  font-family: var(--wv-font-mono);
+}
+
+.wv-lead {
+  color: var(--wv-muted);
+  font: 400 15px/1.7 var(--wv-font-mono);
+  max-width: 540px;
+}
+
+.wv-sub {
+  color: var(--wv-muted);
+  margin: 0 0 24px;
+  font: 400 13px/1.7 var(--wv-font-mono);
+}
+
+:focus-visible {
+  outline: 2px solid var(--wv-cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* 7. RESIZABLE SIDEBAR NAVBAR (DESKTOP) ----------------------------------- */
 .site-sidebar {
   position: fixed;
   top: 0;
@@ -87,11 +379,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 2.25rem 1.25rem;
-  background: rgba(10, 10, 10, 0.96);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-right: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 2rem 1.25rem;
+  background: linear-gradient(135deg, rgba(4, 9, 20, 0.75), rgba(4, 9, 20, 0.88));
+  backdrop-filter: blur(var(--wv-blur)) saturate(var(--wv-saturate));
+  -webkit-backdrop-filter: blur(var(--wv-blur)) saturate(var(--wv-saturate));
+  border-right: 1px solid var(--wv-glass-border);
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.1), 10px 0 35px rgba(0, 0, 0, 0.4);
   user-select: none;
   transition: padding 0.2s ease;
 }
@@ -111,7 +404,7 @@ body {
   padding: 0.75rem 0;
   justify-content: center;
   border-left: none;
-  border-radius: 0.5rem;
+  border-radius: var(--wv-r-sm);
   width: 100%;
 }
 
@@ -119,7 +412,7 @@ body {
 :where(.site-sidebar.icon-only) .nav-btn.active {
   padding-left: 0;
   border-left-color: transparent;
-  background: rgba(212, 175, 55, 0.15);
+  background: rgba(34, 228, 255, 0.15);
 }
 
 /* Drag Handle for Resizable Sidebar */
@@ -131,7 +424,7 @@ body {
   height: 100%;
   cursor: ew-resize;
   touch-action: none;
-  background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.5), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(34, 228, 255, 0.4), transparent);
   transition: background 0.2s, box-shadow 0.2s;
   z-index: 50;
 }
@@ -139,15 +432,15 @@ body {
 .drag-handle:hover,
 .drag-handle:focus-visible,
 .drag-handle.active {
-  background: var(--gold-2);
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
+  background: var(--wv-cyan);
+  box-shadow: 0 0 16px var(--wv-cyan);
 }
 
 .nav-brand {
   display: inline-block;
   line-height: 1;
   text-decoration: none;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.25rem;
   transition: transform 0.3s ease;
   user-select: none;
   background: none;
@@ -163,54 +456,58 @@ body {
 .nav-links {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
   width: 100%;
 }
 
 .nav-btn {
-  font-family: Georgia, serif;
-  font-size: 0.925rem;
-  letter-spacing: 0.12em;
+  font-family: var(--wv-font-body);
+  font-size: 0.88rem;
+  letter-spacing: 0.05em;
+  font-weight: 500;
   text-align: left;
   text-decoration: none;
-  color: rgba(255, 243, 196, 0.8);
+  color: var(--wv-muted);
   background: none;
-  border: none;
+  border: 1px solid transparent;
   border-left: 2px solid transparent;
-  padding: 0.75rem 0.9rem;
+  padding: 0.7rem 0.9rem;
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: color 0.3s ease, border-color 0.3s ease, padding-left 0.3s ease, background 0.3s ease;
-  border-radius: 0 0.5rem 0.5rem 0;
+  transition: color 0.25s ease, border-color 0.25s ease, padding-left 0.25s ease, background 0.25s ease;
+  border-radius: 0 var(--wv-r-sm) var(--wv-r-sm) 0;
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
 .nav-btn:hover {
-  color: var(--gold-3);
-  border-left-color: var(--gold-2);
-  padding-left: 1.25rem;
-  background: rgba(212, 175, 55, 0.05);
+  color: #fff;
+  border-left-color: var(--wv-cyan);
+  padding-left: 1.15rem;
+  background: rgba(34, 228, 255, 0.08);
 }
 
 .nav-btn[aria-current="page"],
 .nav-btn.active {
-  color: var(--gold-3);
-  border-left-color: var(--gold-2);
-  background: rgba(212, 175, 55, 0.08);
+  color: var(--wv-cyan);
+  border-left-color: var(--wv-cyan);
+  background: rgba(34, 228, 255, 0.12);
+  border-color: rgba(34, 228, 255, 0.25);
   font-weight: 600;
 }
 
-/* ---------- Main Content Shell ---------- */
+/* 8. MAIN CONTENT SHELL --------------------------------------------------- */
 .site-main {
   margin-left: var(--nav-w);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--paper);
+  background: transparent;
+  position: relative;
+  z-index: 1;
   transition: margin-left 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -219,20 +516,21 @@ body {
 }
 
 .content-shell {
-  padding: 4rem clamp(1.5rem, 5vw, 4.5rem);
+  padding: 5rem clamp(1.75rem, 5vw, 5rem);
   display: flex;
   flex-direction: column;
-  gap: 4.5rem;
-  max-width: 1200px;
+  gap: 5rem;
+  max-width: var(--wv-max);
+  margin: 0 auto;
+  width: 100%;
 }
 
-/* ---------- Page Header Band (Secondary Pages) ---------- */
+/* 9. PAGE HEADER BAND (SECONDARY PAGES) ----------------------------------- */
 .page-header-band {
   position: relative;
-  height: 34vh;
-  min-height: 240px;
-  max-height: 420px;
-  border-radius: 0 0 3rem 3rem;
+  min-height: 260px;
+  padding: 4.5rem 1.75rem 3.5rem;
+  border-radius: 0 0 2.5rem 2.5rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -241,15 +539,17 @@ body {
   text-align: center;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-  margin-bottom: 2rem;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid var(--wv-glass-border);
+  margin-bottom: 2.5rem;
 }
 
 .page-header-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.72) 0%, rgba(10, 10, 10, 0.88) 100%);
+  background: linear-gradient(135deg, rgba(4, 9, 20, 0.70) 0%, rgba(4, 9, 20, 0.90) 100%);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 .page-header-band h1 {
@@ -257,21 +557,22 @@ body {
   z-index: 2;
   font-size: clamp(2.4rem, 5.5vw, 4.5rem);
   line-height: 1.1;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.9);
 }
 
 .page-header-subtitle {
   position: relative;
   z-index: 2;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   font-size: 0.75rem;
-  color: var(--gold-3);
+  color: var(--wv-cyan);
+  font-family: var(--wv-font-mono);
   margin-top: 0.75rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
 }
 
-/* ---------- First Page / Hero Slider ---------- */
+/* 10. HERO SLIDER --------------------------------------------------------- */
 .hero-slider-section {
   position: relative;
   width: 100%;
@@ -297,9 +598,9 @@ body {
   background-size: cover;
   background-position: center;
   opacity: 0;
-  transform: scale(1.03);
+  transform: scale(1.04);
   transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1), transform 7s ease-out;
-  filter: brightness(0.52) saturate(0.92);
+  filter: brightness(0.50) saturate(1.1);
 }
 
 .slide-item.active {
@@ -311,7 +612,7 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: radial-gradient(ellipse at center, transparent 35%, rgba(10, 10, 10, 0.8) 100%);
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(4, 9, 20, 0.85) 100%);
   pointer-events: none;
 }
 
@@ -331,7 +632,7 @@ body {
   font-size: clamp(4.5rem, 13vw, 10.5rem);
   line-height: 1;
   text-decoration: none;
-  filter: drop-shadow(0 4px 22px rgba(212, 175, 55, 0.45));
+  filter: drop-shadow(0 0 35px rgba(34, 228, 255, 0.45));
   transition: transform 0.5s ease;
   user-select: none;
   background: none;
@@ -344,77 +645,128 @@ body {
 }
 
 .hero-tagline {
-  letter-spacing: 0.45em;
-  text-indent: 0.45em;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
   text-transform: uppercase;
   font-size: 0.85rem;
-  color: rgba(255, 243, 196, 0.85);
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9);
-  font-family: 'Cinzel', Georgia, serif;
+  color: var(--wv-text);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+  font-family: var(--wv-font-mono);
 }
 
-/* ---------- Theme Cards ---------- */
-.gold-card {
-  background: var(--paper-card);
-  border: 1px solid var(--paper-border);
-  border-radius: 1rem;
-  padding: 1.75rem;
-  transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+/* 11. BUTTONS & PILLS (LIQUID GLASS) ------------------------------------- */
+.wv-btns {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
 }
 
-.gold-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold-2);
-  background: rgba(212, 175, 55, 0.09);
-}
-
-/* ---------- Pill Button (.cta) ---------- */
+.wv-btn,
 .cta {
+  font-family: var(--wv-font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 13px 26px;
+  border-radius: var(--wv-r-pill);
+  color: var(--wv-text);
+  cursor: pointer;
+  border: 1px solid var(--wv-glass-border);
+  background: linear-gradient(135deg, var(--wv-glass-1), var(--wv-glass-2));
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: inset 0 1.5px 0 var(--wv-glass-hi), 0 10px 24px -8px var(--wv-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.85rem 1.8rem;
-  border: 1px solid var(--gold-2);
-  border-radius: 999px;
-  color: var(--gold-3);
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  font-size: 0.9rem;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s, transform 0.3s, border-color 0.3s;
 }
 
+.wv-btn:hover,
 .cta:hover {
-  background: var(--gold-2);
-  color: var(--ink);
-  transform: translateY(-2px);
-  border-color: var(--gold-3);
+  transform: translateY(-2px) scale(1.03);
+  border-color: rgba(34, 228, 255, 0.6);
+  box-shadow: inset 0 1.5px 0 #fff, 0 12px 28px -6px rgba(34, 228, 255, 0.3);
+  color: #fff;
+}
+
+.wv-btn:focus-visible,
+.cta:focus-visible {
+  outline: 2px solid var(--wv-cyan);
+  outline-offset: 3px;
+}
+
+.wv-btn--primary {
+  color: var(--wv-ink) !important;
+  border-color: rgba(255, 255, 255, 0.7);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), var(--wv-cyan) 45%, var(--wv-mint));
+  box-shadow: inset 0 1.5px 0 #fff, 0 10px 30px -6px var(--wv-cyan);
+}
+
+.wv-btn--primary:hover {
+  box-shadow: inset 0 1.5px 0 #fff, 0 14px 34px -4px var(--wv-cyan);
 }
 
 .cta-secondary {
-  border-color: rgba(212, 175, 55, 0.4);
-  color: rgba(255, 243, 196, 0.8);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--wv-muted);
 }
 
 .cta-secondary:hover {
-  background: rgba(212, 175, 55, 0.15);
-  color: #fff;
-  border-color: var(--gold-2);
+  color: var(--wv-text);
+  border-color: var(--wv-cyan);
+  background: rgba(34, 228, 255, 0.12);
 }
 
-/* ---------- FAQ Details ---------- */
+.wv-pill {
+  font: 500 12px var(--wv-font-mono);
+  padding: 7px 14px;
+  border-radius: var(--wv-r-pill);
+  color: var(--wv-text);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--wv-glass-border);
+}
+
+/* 12. CARDS (.wv-card & .gold-card) -------------------------------------- */
+.wv-card {
+  padding: 24px;
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+}
+
+.wv-card__n {
+  font: 900 34px var(--wv-font-display);
+  color: var(--wv-cyan);
+  text-shadow: 0 0 18px var(--wv-cyan);
+}
+
+.wv-card__title {
+  margin: 10px 0 6px;
+  font: 700 15px var(--wv-font-display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.wv-card__text {
+  margin: 0;
+  color: var(--wv-muted);
+  font: 400 13px/1.6 var(--wv-font-mono);
+}
+
+/* 13. FAQ DETAILS -------------------------------------------------------- */
 details.gold-faq {
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  border-bottom: 1px solid var(--wv-glass-border);
   padding: 1.25rem 0;
 }
 
 details.gold-faq summary {
   cursor: pointer;
-  font-size: 1.25rem;
-  color: rgba(255, 243, 196, 0.9);
+  font-size: 1.15rem;
+  font-family: var(--wv-font-display);
+  color: var(--wv-text);
   list-style: none;
   transition: color 0.3s;
 }
@@ -424,41 +776,32 @@ details.gold-faq summary::-webkit-details-marker {
 }
 
 details.gold-faq summary:hover {
-  color: var(--gold-3);
+  color: var(--wv-cyan);
 }
 
 details.gold-faq[open] summary {
-  color: var(--gold-2);
+  color: var(--wv-cyan);
 }
 
-/* ---------- Contact Cards ---------- */
+/* 14. CONTACT CARDS ------------------------------------------------------ */
 .contact-gold-card {
   display: flex;
   align-items: center;
   gap: 1.25rem;
   padding: 1.5rem;
-  background: rgba(212, 175, 55, 0.07);
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  border-radius: 1rem;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.3s, transform 0.3s, background 0.3s;
-}
-
-.contact-gold-card:hover {
-  border-color: var(--gold-2);
-  background: rgba(212, 175, 55, 0.12);
-  transform: translateY(-3px);
 }
 
 .contact-gold-card svg {
   width: 36px;
   height: 36px;
-  fill: var(--gold-2);
+  fill: var(--wv-cyan);
   flex-shrink: 0;
+  filter: drop-shadow(0 0 10px rgba(34, 228, 255, 0.5));
 }
 
-/* ---------- Floating WhatsApp ---------- */
+/* 15. FLOATING ACTIONS ---------------------------------------------------- */
 .whatsapp-float-btn {
   position: fixed;
   bottom: 2rem;
@@ -470,25 +813,25 @@ details.gold-faq[open] summary {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold-2), var(--gold-1));
-  box-shadow: 0 4px 22px rgba(212, 175, 55, 0.5), 0 0 10px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, var(--wv-mint), var(--wv-cyan));
+  box-shadow: 0 6px 26px rgba(44, 255, 176, 0.4), 0 0 12px rgba(0, 0, 0, 0.5);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
   cursor: pointer;
   text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .whatsapp-float-btn:hover {
   transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.7);
+  box-shadow: 0 8px 32px rgba(44, 255, 176, 0.7);
 }
 
 .whatsapp-float-btn svg {
   width: 28px;
   height: 28px;
-  fill: var(--ink);
+  fill: var(--wv-ink);
 }
 
-/* ---------- Floating Quote Button ---------- */
 .quote-float-btn {
   position: fixed;
   bottom: 6.25rem;
@@ -497,31 +840,30 @@ details.gold-faq[open] summary {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  border-radius: 9999px;
-  background: rgba(10, 10, 10, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 175, 55, 0.5);
-  color: var(--gold-3);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 0 12px rgba(212, 175, 55, 0.2);
+  padding: 0.75rem 1.35rem;
+  border-radius: var(--wv-r-pill);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--wv-glass-border);
+  color: var(--wv-text);
+  box-shadow: inset 0 1.5px 0 var(--wv-glass-hi), 0 6px 24px rgba(0, 0, 0, 0.6);
   transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  font-size: 0.825rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  font-family: var(--wv-font-display);
 }
 
 .quote-float-btn:hover {
   transform: translateY(-3px) scale(1.03);
-  border-color: var(--gold-2);
-  background: rgba(20, 20, 20, 0.98);
-  box-shadow: 0 8px 26px rgba(212, 175, 55, 0.4);
+  border-color: var(--wv-cyan);
+  box-shadow: inset 0 1.5px 0 #fff, 0 8px 28px rgba(34, 228, 255, 0.35);
   color: #fff;
 }
 
-/* ---------- Draggable Assistant Floating Button ---------- */
 .assistant-draggable-btn {
   user-select: none;
   -webkit-user-select: none;
@@ -533,7 +875,122 @@ details.gold-faq[open] summary {
   cursor: grabbing;
 }
 
-/* ---------- Mobile Media Query & Hamburger Navigation (< 768px) ---------- */
+/* 16. CHAT & AI CONCIERGE ------------------------------------------------- */
+.wv-chat {
+  max-width: 470px;
+}
+
+.wv-chat__head {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--wv-glass-border);
+  font: 500 13px var(--wv-font-display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.wv-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--wv-mint);
+  box-shadow: 0 0 10px var(--wv-mint);
+}
+
+.wv-chat__msgs {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font: 400 13px/1.6 var(--wv-font-mono);
+}
+
+.wv-msg {
+  padding: 10px 15px;
+  border-radius: var(--wv-r-md);
+  max-width: 85%;
+  border: 1px solid var(--wv-glass-border);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.wv-msg--user {
+  align-self: flex-end;
+  color: var(--wv-ink);
+  background: linear-gradient(135deg, #fff, var(--wv-cyan) 60%, var(--wv-mint));
+}
+
+.wv-human {
+  display: block;
+  margin: 0 16px 16px;
+  padding: 9px 12px;
+  border: 1px dashed var(--wv-glass-border);
+  border-radius: var(--wv-r-sm);
+  color: var(--wv-muted);
+  font: 500 12px var(--wv-font-mono);
+}
+
+/* 17. FORM FIELDS --------------------------------------------------------- */
+.wv-input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--wv-r-sm);
+  border: 1px solid var(--wv-glass-border);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--wv-text);
+  font: 400 14px var(--wv-font-mono);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.wv-input::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: var(--wv-muted);
+}
+
+.wv-input:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--wv-cyan);
+  box-shadow: 0 0 16px rgba(34, 228, 255, 0.35);
+}
+
+/* 18. PHONE MOCKUP & CHIP ------------------------------------------------- */
+.wv-phone {
+  width: 250px;
+  max-width: 100%;
+  margin: auto;
+  padding: 12px;
+  border-radius: 38px;
+}
+
+.wv-phone__screen {
+  border-radius: 28px;
+  background: rgba(4, 9, 20, 0.45);
+  border: 1px solid var(--wv-glass-border);
+  padding: 14px;
+  min-height: 300px;
+}
+
+.wv-chip {
+  display: inline-block;
+  font: 500 11px var(--wv-font-mono);
+  border: 1px solid var(--wv-glass-border);
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: var(--wv-r-pill);
+  padding: 3px 10px;
+  margin: 8px 4px 0 0;
+}
+
+/* 19. MOBILE (< 768px) ---------------------------------------------------- */
 @media (max-width: 768px) {
   :root {
     --nav-w: 0px !important;
@@ -553,14 +1010,20 @@ details.gold-faq[open] summary {
   }
 
   .page-header-band {
-    border-radius: 0 0 1.5rem 1.5rem;
-    height: 28vh;
-    min-height: 180px;
+    border-radius: 0 0 1.75rem 1.75rem;
+    min-height: 200px;
+    padding: 3.5rem 1.25rem 2.5rem;
   }
 
   .content-shell {
-    padding: 2.5rem 1.25rem;
-    gap: 3rem;
+    padding: 2.75rem 1.25rem 5rem;
+    gap: 3.5rem;
+  }
+
+  .gold-card,
+  .wv-card,
+  .contact-gold-card {
+    padding: 1.65rem 1.25rem;
   }
 
   .whatsapp-float-btn {
@@ -578,7 +1041,7 @@ details.gold-faq[open] summary {
   }
 }
 
-/* ---------- Page Navigation Transition ---------- */
+/* 20. PAGE NAVIGATION TRANSITION ----------------------------------------- */
 .page-view-fade {
   animation: pageFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: opacity, transform;
@@ -595,10 +1058,18 @@ details.gold-faq[open] summary {
   }
 }
 
+/* 21. ACCESSIBILITY ------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
-  .page-view-fade {
+  .wv-bg i,
+  .wv-tag::after,
+  .page-view-fade,
+  .gold-text {
     animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
+  }
+  .wv-card,
+  .wv-btn,
+  .cta,
+  .gold-card {
+    transition: none !important;
   }
 }
