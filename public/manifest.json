@@ -1,0 +1,49 @@
+{
+  "id": "/",
+  "name": "Waves — SME Digital Transformation & Business Websites",
+  "short_name": "Waves",
+  "description": "Fast, mobile-first business websites engineered for Nigerian SMEs to establish credibility and capture WhatsApp leads.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#040914",
+  "theme_color": "#040914",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Services & Packages",
+      "short_name": "Services",
+      "description": "Explore Launch, Growth, and AI Growth packages",
+      "url": "/services",
+      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Request a Quote",
+      "short_name": "Get Quote",
+      "description": "Connect on WhatsApp for project scoping",
+      "url": "/contact",
+      "icons": [{ "src": "/pwa-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}

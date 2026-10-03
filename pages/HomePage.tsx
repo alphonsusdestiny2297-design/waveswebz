@@ -99,7 +99,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
 
         {/* Slide Indicator Dots */}
         <div 
-          className="absolute bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-10"
+          className="absolute bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-10 px-3.5 py-1.5 rounded-full backdrop-blur-md bg-black/40 border border-white/15 shadow-lg"
           onClick={(e) => e.stopPropagation()}
         >
           {HERO_SLIDES.map((_, idx) => (

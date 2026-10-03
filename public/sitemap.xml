@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- 1. Home / Digital Foundation -->
+  <url>
+    <loc>https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+    <image:image>
+      <image:loc>https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/og-image.jpg</image:loc>
+      <image:title>Waves — SME Digital Transformation &amp; Business Websites</image:title>
+      <image:caption>Your Business. Your Digital Home. Fast, mobile-first business websites engineered for Nigerian SMEs.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 2. About / The Philosophy -->
+  <url>
+    <loc>https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/about</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 3. Journey / 5 Stages of Customer Experience -->
+  <url>
+    <loc>https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/journey</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 4. Services / Launch, Growth & AI Growth Packages -->
+  <url>
+    <loc>https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/services</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- 5. Process / 9-Step Engineering Pipeline -->
+  <url>
+    <loc>https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/process</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 6. AI Modules / Practical Automation for SMEs -->
+  <url>
+    <loc>https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/ai</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 7. Contact / Discovery Chat & WhatsApp Scope -->
+  <url>
+    <loc>https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/contact</loc>
+    <lastmod>2026-10-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+</urlset>

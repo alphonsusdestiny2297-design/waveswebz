@@ -17,6 +17,7 @@ import ProcessPage from './pages/ProcessPage';
 import AIPage from './pages/AIPage';
 import ContactPage from './pages/ContactPage';
 import { PageId, ServiceLevelId } from './types';
+import { OfflineIndicator } from './components/OfflineIndicator';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
@@ -25,13 +26,51 @@ function App() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isAtSlider, setIsAtSlider] = useState(true);
 
+  // Theme management: default to system preference or saved preference
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    try {
+      const saved = localStorage.getItem('waves_theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+      if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        return 'light';
+      }
+    } catch {
+      // safe fallback
+    }
+    return 'dark';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (theme === 'light') {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    }
+    try {
+      localStorage.setItem('waves_theme', theme);
+    } catch {
+      // safe fallback
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  };
+
   // Sync with browser history and hash routing on mount
   useEffect(() => {
     const parsePageFromHash = (): PageId => {
       const hash = window.location.hash.replace(/^#\/?/, '').trim();
+      const path = window.location.pathname.replace(/^\//, '').split('/')[0].trim();
       const validPages: PageId[] = ['home', 'about', 'journey', 'services', 'process', 'ai', 'contact'];
       if (validPages.includes(hash as PageId)) {
         return hash as PageId;
+      }
+      if (validPages.includes(path as PageId)) {
+        return path as PageId;
       }
       return 'home';
     };
@@ -124,7 +163,7 @@ function App() {
   const hideNavbarOnSlider = currentPage === 'home' && isAtSlider;
 
   return (
-    <div className="wv-body min-h-screen bg-[#040914] text-[#F2F7FF] font-sans antialiased selection:bg-[#22E4FF]/30 selection:text-[#FFFFFF] flex flex-col justify-between relative overflow-x-hidden">
+    <div className="wv-body min-h-screen bg-[var(--wv-bg)] text-[var(--wv-text)] font-sans antialiased selection:bg-[#22E4FF]/30 selection:text-white flex flex-col justify-between relative overflow-x-hidden">
       
       {/* Background Colour Washes (Glass needs vibrant luminous colour behind it) */}
       <div className="wv-bg" aria-hidden="true">
@@ -140,6 +179,8 @@ function App() {
         onNavigate={navigateTo}
         onOpenQuote={() => handleOpenQuote()}
         hideNavbar={hideNavbarOnSlider}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       {/* Main Content Area: in full-slider-mode, margin-left is 0 for an uncompromised full picture */}
@@ -217,6 +258,9 @@ function App() {
         onOpen={() => setIsChatOpen(true)}
         onOpenQuote={() => handleOpenQuote()}
       />
+
+      {/* PWA Offline Connectivity Indicator */}
+      <OfflineIndicator />
 
     </div>
   );

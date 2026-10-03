@@ -5,12 +5,15 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { PageId } from '../types';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface NavbarProps {
   currentPage: PageId;
   onNavigate: (page: PageId) => void;
   onOpenQuote?: () => void;
   hideNavbar?: boolean;
+  theme?: 'light' | 'dark';
+  onToggleTheme?: () => void;
 }
 
 const MIN_WIDTH = 64; // Collapsible down until only the logos show
@@ -24,7 +27,13 @@ interface NavItem {
   icon: (active: boolean) => React.ReactNode;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = false }) => {
+const Navbar: React.FC<NavbarProps> = ({ 
+  currentPage, 
+  onNavigate, 
+  hideNavbar = false,
+  theme = 'dark',
+  onToggleTheme
+}) => {
   const [sidebarWidth, setSidebarWidth] = useState<number>(() => {
     try {
       const saved = localStorage.getItem('waves_sidebar_width');
@@ -258,10 +267,32 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
           <span className="font-display font-black uppercase tracking-[0.16em] neon-text inline-block">waves</span>
         </button>
 
-        {/* Subtitle tag */}
-        <span className="text-[10px] tracking-widest uppercase text-[#22E4FF] font-mono">
-          Liquid Glass
-        </span>
+        {/* Right side: Theme toggle and mobile subtitle tag */}
+        <div className="flex items-center gap-2">
+          <PWAInstallButton className="text-[11px] px-2.5 py-1" />
+          {onToggleTheme && (
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className="p-1.5 rounded-lg border border-[var(--wv-glass-border)] bg-[rgba(255,255,255,0.08)] text-[var(--wv-cyan)] hover:bg-[rgba(34,228,255,0.15)] transition-colors"
+              title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+              aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+            >
+              {theme === 'light' ? (
+                <svg className="w-4 h-4 text-[#0077B6]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              ) : (
+                <svg className="w-4 h-4 text-[#22E4FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
+            </button>
+          )}
+          <span className="text-[10px] tracking-widest uppercase text-[var(--wv-cyan)] font-mono">
+            Liquid Glass
+          </span>
+        </div>
       </header>
 
       {/* ============================================================
@@ -324,7 +355,32 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
             </nav>
           </div>
 
-          <div className="pt-6 border-t border-[rgba(255,255,255,0.15)] text-center">
+          <div className="pt-6 border-t border-[rgba(255,255,255,0.15)] flex flex-col gap-3 text-center">
+            <PWAInstallButton className="w-full justify-center py-2" />
+            {onToggleTheme && (
+              <button
+                type="button"
+                onClick={onToggleTheme}
+                className="w-full flex items-center justify-center gap-2.5 py-2.5 px-4 rounded-xl border border-[var(--wv-glass-border)] bg-[rgba(255,255,255,0.06)] text-[var(--wv-text)] text-xs font-mono tracking-wider uppercase transition-colors"
+              >
+                {theme === 'light' ? (
+                  <>
+                    <svg className="w-4 h-4 text-[#0077B6]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span>Switch to Dark Mode</span>
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4 text-[#22E4FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                    <span>Switch to Light Mode</span>
+                  </>
+                )}
+              </button>
+            )}
+
             <p className="text-[11px] tracking-widest uppercase text-[#A9BBDA]/75 font-mono leading-relaxed">
               Your Business. <br />
               <span className="text-[#22E4FF]">Your Digital Home.</span>
@@ -404,8 +460,37 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, hideNavbar = f
           </nav>
         </div>
 
-        {/* Sidebar footer tagline */}
-        <div className={`pt-6 border-t border-[rgba(255,255,255,0.15)] w-full ${isIconOnly ? 'text-center' : ''}`}>
+        {/* Sidebar footer with Theme Toggle & tagline */}
+        <div className={`pt-4 border-t border-[rgba(255,255,255,0.15)] w-full flex flex-col gap-3 ${isIconOnly ? 'items-center' : ''}`}>
+          {!isIconOnly && <PWAInstallButton className="w-full justify-center" />}
+          {onToggleTheme && (
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className={`flex items-center gap-2.5 px-3 py-2 rounded-xl transition-all font-mono text-xs border border-[var(--wv-glass-border)] bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(34,228,255,0.12)] text-[var(--wv-text)] hover:text-[var(--wv-cyan)] ${
+                isIconOnly ? 'p-2 justify-center' : 'w-full justify-start'
+              }`}
+              title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+              aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
+            >
+              {theme === 'light' ? (
+                <>
+                  <svg className="w-4 h-4 text-[#0077B6] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                  {!isIconOnly && <span className="font-semibold truncate">Light Mode</span>}
+                </>
+              ) : (
+                <>
+                  <svg className="w-4 h-4 text-[#22E4FF] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  </svg>
+                  {!isIconOnly && <span className="font-semibold truncate">Dark Mode</span>}
+                </>
+              )}
+            </button>
+          )}
+
           {isIconOnly ? (
             <span className="text-[#22E4FF] text-xs font-mono block">●</span>
           ) : (

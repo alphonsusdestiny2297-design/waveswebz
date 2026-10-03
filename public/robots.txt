@@ -1,0 +1,44 @@
+# Robots.txt for Waves (https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app)
+# Optimized for Google, Bing, and Modern AI Answer Engines
+
+User-agent: *
+Allow: /
+Allow: /og-image.jpg
+Allow: /og-image.png
+Allow: /fonts/
+
+# Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /og-image.jpg
+Allow: /og-image.png
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# AI Answer Engines & LLM Web Search Agents (Google AI Overviews, Perplexity, OpenAI, Anthropic)
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/sitemap.xml

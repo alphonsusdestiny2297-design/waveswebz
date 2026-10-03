@@ -69,28 +69,75 @@
       #22E4FF 100%);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --wv-bg: #E8F1FF;
-    --wv-text: #0A1430;
-    --wv-muted: #465A80;
-    --wv-cyan: #00A6D0;
-    --wv-violet: #7048E8;
-    --wv-mint: #0DBB86;
-    --wv-pink: #E63FAE;
-    --wv-ink: #FFFFFF;
-    --wv-glass-1: rgba(255, 255, 255, 0.75);
-    --wv-glass-2: rgba(255, 255, 255, 0.35);
-    --wv-glass-border: rgba(255, 255, 255, 0.85);
-    --wv-glass-hi: #fff;
-    --wv-shadow: rgba(40, 70, 140, 0.20);
+/* LIGHT THEME TOKENS: Bright, light and white background with neon writing */
+:root[data-theme="light"],
+html.light,
+body.light {
+  color-scheme: light;
 
-    --paper: #E8F1FF;
-    --paper-card: rgba(255, 255, 255, 0.65);
-    --paper-border: rgba(255, 255, 255, 0.80);
+  /* background: bright, light, pure white */
+  --wv-bg: #FFFFFF;
+  --wv-surface: #F8FAFD;
+  --wv-text: #0B2240;             /* deep tech neon navy for crystal-clear readability */
+  --wv-heading: #0047AB;          /* electric cyber blue for heading writing */
+  --wv-muted: #1A365D;            /* deep technical cyan-navy for body readability */
+  --wv-cyan: #0077B6;             /* high-contrast electric neon cyan */
+  --wv-violet: #6D28D9;           /* deep cyber neon violet */
+  --wv-mint: #047857;             /* deep neon emerald-mint */
+  --wv-pink: #BE185D;             /* deep neon magenta */
+  --wv-blue: #0052CC;             /* vibrant cyber blue */
+  --wv-ink: #FFFFFF;              /* text on bright gradient buttons */
+
+  /* glass in light mode: bright crisp frosted white glass */
+  --wv-glass-1: rgba(255, 255, 255, 0.96);
+  --wv-glass-2: rgba(246, 250, 255, 0.88);
+  --wv-glass-border: rgba(0, 102, 255, 0.16);
+  --wv-glass-hi: #FFFFFF;
+  --wv-shadow: rgba(0, 48, 120, 0.08);
+  --wv-card-bg: rgba(255, 255, 255, 0.94);
+  --wv-card-border: rgba(0, 119, 182, 0.18);
+  --wv-spotlight: rgba(0, 140, 255, 0.12);
+
+  --paper: #FFFFFF;
+  --paper-card: rgba(255, 255, 255, 0.95);
+  --paper-border: rgba(0, 102, 255, 0.16);
+  --gold-1: #0A1430;
+  --gold-2: #0077B6;
+  --gold-3: #0A1430;
+  --gold-highlight: #047857;
+  --gold-dark: #6D28D9;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --wv-bg: #FFFFFF;
+    --wv-surface: #F8FAFD;
+    --wv-text: #0B2240;
+    --wv-heading: #0047AB;
+    --wv-muted: #1A365D;
+    --wv-cyan: #0077B6;
+    --wv-violet: #6D28D9;
+    --wv-mint: #047857;
+    --wv-pink: #BE185D;
+    --wv-blue: #0052CC;
+    --wv-ink: #FFFFFF;
+    --wv-glass-1: rgba(255, 255, 255, 0.96);
+    --wv-glass-2: rgba(246, 250, 255, 0.88);
+    --wv-glass-border: rgba(0, 102, 255, 0.16);
+    --wv-glass-hi: #FFFFFF;
+    --wv-shadow: rgba(0, 48, 120, 0.08);
+    --wv-card-bg: rgba(255, 255, 255, 0.94);
+    --wv-card-border: rgba(0, 119, 182, 0.18);
+    --wv-spotlight: rgba(0, 140, 255, 0.12);
+    --paper: #FFFFFF;
+    --paper-card: rgba(255, 255, 255, 0.95);
+    --paper-border: rgba(0, 102, 255, 0.16);
     --gold-1: #0A1430;
-    --gold-2: #00A6D0;
+    --gold-2: #0077B6;
     --gold-3: #0A1430;
+    --gold-highlight: #047857;
+    --gold-dark: #6D28D9;
   }
 }
 
@@ -600,7 +647,7 @@ body, .wv-body {
   opacity: 0;
   transform: scale(1.04);
   transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1), transform 7s ease-out;
-  filter: brightness(0.50) saturate(1.1);
+  filter: brightness(0.68) saturate(1.15);
 }
 
 .slide-item.active {
@@ -1072,4 +1119,383 @@ textarea:focus {
   .gold-card {
     transition: none !important;
   }
+}
+
+/* ==========================================================================
+   22. LIGHT MODE ARCHITECTURE
+   Bright, light and white background with neon writing for optimal readability
+   ========================================================================== */
+:root[data-theme="light"],
+html.light,
+body.light {
+  background-color: #FFFFFF !important;
+  color: var(--wv-text) !important;
+}
+
+:root[data-theme="light"] .wv-body,
+html.light .wv-body {
+  background-color: #FFFFFF !important;
+  color: var(--wv-text) !important;
+}
+
+/* Light mode text & typography in high-contrast neon tech colors */
+:root[data-theme="light"] .wv-h1 span,
+:root[data-theme="light"] .neon-text,
+:root[data-theme="light"] .gold-text,
+:root[data-theme="light"] .tech-text,
+html.light .wv-h1 span,
+html.light .neon-text,
+html.light .gold-text,
+html.light .tech-text {
+  background: linear-gradient(90deg, #0052CC 0%, #0077CC 28%, #7C3AED 54%, #047857 80%, #0052CC 100%) !important;
+  background-size: 250% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  filter: drop-shadow(0 2px 10px rgba(0, 82, 204, 0.20)) !important;
+}
+
+/* Headings in vibrant electric cyber blue */
+:root[data-theme="light"] h1:not(.neon-text):not(.gold-text),
+:root[data-theme="light"] h2:not(.neon-text):not(.gold-text),
+:root[data-theme="light"] h3:not(.neon-text):not(.gold-text),
+:root[data-theme="light"] .wv-h1:not(span),
+:root[data-theme="light"] .wv-h2:not(span),
+:root[data-theme="light"] .text-\[\#F2F7FF\],
+html.light h1:not(.neon-text):not(.gold-text),
+html.light h2:not(.neon-text):not(.gold-text),
+html.light h3:not(.neon-text):not(.gold-text),
+html.light .wv-h1:not(span),
+html.light .wv-h2:not(span),
+html.light .text-\[\#F2F7FF\] {
+  color: var(--wv-heading) !important;
+}
+
+/* Body & descriptions in deep tech navy for crystal-clear readability */
+:root[data-theme="light"] p:not(.wv-tag):not(.hero-tagline),
+:root[data-theme="light"] li,
+:root[data-theme="light"] .text-\[\#CBD7EC\],
+:root[data-theme="light"] .text-\[\#CBD7EC\]\/90,
+:root[data-theme="light"] .text-\[\#CBD7EC\]\/80,
+:root[data-theme="light"] .text-\[\#CBD7EC\]\/75,
+:root[data-theme="light"] .text-\[\#CBD7EC\]\/70,
+:root[data-theme="light"] .text-\[\#A9BBDA\],
+:root[data-theme="light"] .text-\[\#A9BBDA\]\/80,
+:root[data-theme="light"] .text-\[\#A9BBDA\]\/75,
+html.light p:not(.wv-tag):not(.hero-tagline),
+html.light li,
+html.light .text-\[\#CBD7EC\],
+html.light .text-\[\#CBD7EC\]\/90,
+html.light .text-\[\#CBD7EC\]\/80,
+html.light .text-\[\#CBD7EC\]\/75,
+html.light .text-\[\#CBD7EC\]\/70,
+html.light .text-\[\#A9BBDA\],
+html.light .text-\[\#A9BBDA\]\/80,
+html.light .text-\[\#A9BBDA\]\/75 {
+  color: var(--wv-muted) !important;
+}
+
+/* Neon accents: Cyan */
+:root[data-theme="light"] .text-\[\#22E4FF\],
+:root[data-theme="light"] .hero-tagline,
+html.light .text-\[\#22E4FF\],
+html.light .hero-tagline {
+  color: var(--wv-cyan) !important;
+}
+
+/* Neon accents: Mint */
+:root[data-theme="light"] .text-\[\#2CFFB0\],
+html.light .text-\[\#2CFFB0\] {
+  color: var(--wv-mint) !important;
+}
+
+/* Section tags in luminous neon badge style */
+:root[data-theme="light"] .wv-tag,
+html.light .wv-tag {
+  color: #0077B6 !important;
+  background: rgba(0, 119, 182, 0.08) !important;
+  border: 1px solid rgba(0, 119, 182, 0.28) !important;
+  padding: 4px 12px !important;
+  border-radius: var(--wv-r-pill) !important;
+  box-shadow: 0 2px 8px rgba(0, 119, 182, 0.10) !important;
+  display: inline-block !important;
+}
+
+/* Background washes: soft luminous pastel neon glow on bright white canvas */
+:root[data-theme="light"] .wv-bg i,
+html.light .wv-bg i {
+  opacity: 0.12 !important;
+  filter: blur(80px) !important;
+}
+
+/* Cards & Liquid Glass in Light Mode */
+:root[data-theme="light"] .tech-card,
+:root[data-theme="light"] .gold-card,
+:root[data-theme="light"] .wv-glass,
+:root[data-theme="light"] .contact-tech-card,
+:root[data-theme="light"] .contact-gold-card,
+:root[data-theme="light"] .wv-card,
+html.light .tech-card,
+html.light .gold-card,
+html.light .wv-glass,
+html.light .contact-tech-card,
+html.light .contact-gold-card,
+html.light .wv-card {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(0, 119, 182, 0.18) !important;
+  box-shadow: inset 0 1.5px 0 #FFFFFF, 0 14px 34px -10px rgba(0, 48, 120, 0.08) !important;
+}
+
+:root[data-theme="light"] .tech-card:hover,
+:root[data-theme="light"] .gold-card:hover,
+:root[data-theme="light"] .wv-glass:hover,
+:root[data-theme="light"] .contact-tech-card:hover,
+:root[data-theme="light"] .contact-gold-card:hover,
+html.light .tech-card:hover,
+html.light .gold-card:hover,
+html.light .wv-glass:hover,
+html.light .contact-tech-card:hover,
+html.light .contact-gold-card:hover {
+  border-color: rgba(0, 119, 182, 0.45) !important;
+  box-shadow: inset 0 1.5px 0 #FFFFFF, 0 22px 45px -10px rgba(0, 82, 204, 0.16), 0 0 18px rgba(0, 119, 182, 0.12) !important;
+}
+
+/* Card pointer spotlight in light mode */
+:root[data-theme="light"] .wv-glass::before,
+:root[data-theme="light"] .tech-card::before,
+:root[data-theme="light"] .gold-card::before,
+:root[data-theme="light"] .contact-tech-card::before,
+:root[data-theme="light"] .contact-gold-card::before,
+html.light .wv-glass::before,
+html.light .tech-card::before,
+html.light .gold-card::before,
+html.light .contact-tech-card::before,
+html.light .contact-gold-card::before {
+  background: radial-gradient(240px circle at var(--mx, 30%) var(--my, 15%), rgba(0, 140, 255, 0.12), transparent 60%) !important;
+}
+
+/* Primary CTA Buttons */
+:root[data-theme="light"] .cta,
+:root[data-theme="light"] .wv-btn,
+:root[data-theme="light"] .wv-btn--primary,
+html.light .cta,
+html.light .wv-btn,
+html.light .wv-btn--primary {
+  background: linear-gradient(135deg, #0052CC 0%, #0077B6 60%, #0099FF 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(0, 102, 255, 0.3) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 24px -6px rgba(0, 82, 204, 0.35) !important;
+}
+
+:root[data-theme="light"] .cta:hover,
+:root[data-theme="light"] .wv-btn:hover,
+html.light .cta:hover,
+html.light .wv-btn:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 12px 28px -6px rgba(0, 82, 204, 0.45) !important;
+}
+
+/* Secondary CTA Buttons */
+:root[data-theme="light"] .cta-secondary,
+html.light .cta-secondary {
+  background: rgba(0, 119, 182, 0.08) !important;
+  border: 1px solid rgba(0, 119, 182, 0.35) !important;
+  color: #0052CC !important;
+  box-shadow: none !important;
+}
+
+:root[data-theme="light"] .cta-secondary:hover,
+html.light .cta-secondary:hover {
+  background: rgba(0, 119, 182, 0.16) !important;
+  color: #0047AB !important;
+  border-color: #0077B6 !important;
+}
+
+/* Desktop Sidebar in Light Mode */
+:root[data-theme="light"] .site-sidebar,
+html.light .site-sidebar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-right: 1px solid rgba(0, 102, 255, 0.14) !important;
+  box-shadow: 10px 0 30px rgba(0, 48, 120, 0.05) !important;
+}
+
+:root[data-theme="light"] .site-header,
+html.light .site-header {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(0, 102, 255, 0.14) !important;
+  box-shadow: 0 4px 20px rgba(0, 48, 120, 0.05) !important;
+}
+
+:root[data-theme="light"] .nav-btn,
+html.light .nav-btn {
+  color: #1A365D !important;
+}
+
+:root[data-theme="light"] .nav-btn:hover,
+html.light .nav-btn:hover {
+  color: #0077B6 !important;
+  background: rgba(0, 119, 182, 0.08) !important;
+}
+
+:root[data-theme="light"] .nav-btn.active,
+html.light .nav-btn.active {
+  color: #0077B6 !important;
+  border-left-color: #0077B6 !important;
+  background: rgba(0, 119, 182, 0.12) !important;
+  box-shadow: inset 0 0 14px rgba(0, 119, 182, 0.08) !important;
+}
+
+/* Secondary Page Header Band in Light Mode */
+:root[data-theme="light"] .page-header-band,
+html.light .page-header-band {
+  box-shadow: 0 14px 40px rgba(0, 48, 120, 0.08) !important;
+  border-bottom: 1px solid rgba(0, 102, 255, 0.16) !important;
+}
+
+:root[data-theme="light"] .page-header-overlay,
+html.light .page-header-overlay {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(240, 246, 255, 0.94) 100%) !important;
+}
+
+:root[data-theme="light"] .page-header-band h1,
+html.light .page-header-band h1 {
+  text-shadow: 0 2px 14px rgba(0, 102, 255, 0.16) !important;
+}
+
+:root[data-theme="light"] .page-header-subtitle,
+html.light .page-header-subtitle {
+  color: var(--wv-cyan) !important;
+  text-shadow: none !important;
+}
+
+/* Hero Slideshow enhanced visibility in Light Mode */
+:root[data-theme="light"] .slide-item,
+html.light .slide-item {
+  filter: brightness(0.92) contrast(1.05) saturate(1.16) !important;
+}
+
+:root[data-theme="light"] .hero-vignette,
+html.light .hero-vignette {
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.28) 60%, rgba(255, 255, 255, 0.70) 100%) !important;
+}
+
+:root[data-theme="light"] .hero-center-content,
+html.light .hero-center-content {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 1.5rem !important;
+}
+
+:root[data-theme="light"] .hero-center-content .brand-hero span {
+  filter: drop-shadow(0 4px 22px rgba(0, 50, 130, 0.40)) drop-shadow(0 0 35px rgba(34, 228, 255, 0.50)) !important;
+}
+
+:root[data-theme="light"] .hero-center-content .hero-tagline {
+  color: #0052CC !important;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.95), 0 1px 4px rgba(0, 0, 0, 0.25) !important;
+  font-weight: 700 !important;
+}
+
+:root[data-theme="light"] .hero-center-content p.font-sans {
+  color: #040914 !important;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.95), 0 1px 3px rgba(0, 0, 0, 0.25) !important;
+  font-weight: 600 !important;
+}
+
+:root[data-theme="light"] .hero-slider-section .backdrop-blur-md,
+html.light .hero-slider-section .backdrop-blur-md {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(0, 102, 255, 0.22) !important;
+  box-shadow: 0 4px 16px rgba(0, 48, 120, 0.12) !important;
+}
+
+:root[data-theme="light"] .hero-slider-section .bg-white\/30,
+html.light .hero-slider-section .bg-white\/30 {
+  background-color: rgba(0, 102, 255, 0.25) !important;
+}
+
+:root[data-theme="light"] .hero-slider-section .bg-\[\#22E4FF\],
+html.light .hero-slider-section .bg-\[\#22E4FF\] {
+  background-color: #0077B6 !important;
+  box-shadow: 0 0 10px rgba(0, 119, 182, 0.5) !important;
+}
+
+/* Floating Actions in Light Mode */
+:root[data-theme="light"] .quote-float-btn,
+html.light .quote-float-btn {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--wv-cyan) !important;
+  border: 1px solid rgba(0, 102, 255, 0.25) !important;
+  box-shadow: 0 6px 20px rgba(0, 48, 120, 0.12) !important;
+}
+
+:root[data-theme="light"] .quote-float-btn:hover,
+html.light .quote-float-btn:hover {
+  background: #FFFFFF !important;
+  color: #0052CC !important;
+  border-color: #0077B6 !important;
+  box-shadow: 0 8px 26px rgba(0, 119, 182, 0.25) !important;
+}
+
+/* Form Inputs in Light Mode */
+:root[data-theme="light"] .wv-input,
+:root[data-theme="light"] input[type="text"],
+:root[data-theme="light"] input[type="email"],
+:root[data-theme="light"] input[type="tel"],
+:root[data-theme="light"] select,
+:root[data-theme="light"] textarea,
+html.light .wv-input,
+html.light input[type="text"],
+html.light input[type="email"],
+html.light input[type="tel"],
+html.light select,
+html.light textarea {
+  background: #FFFFFF !important;
+  color: #0A192F !important;
+  border: 1px solid rgba(0, 102, 255, 0.25) !important;
+}
+
+:root[data-theme="light"] .wv-input:focus,
+:root[data-theme="light"] input:focus,
+:root[data-theme="light"] select:focus,
+:root[data-theme="light"] textarea:focus,
+html.light .wv-input:focus,
+html.light input:focus,
+html.light select:focus,
+html.light textarea:focus {
+  border-color: #0077B6 !important;
+  box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.18) !important;
+}
+
+:root[data-theme="light"] .wv-input::placeholder,
+:root[data-theme="light"] input::placeholder,
+:root[data-theme="light"] textarea::placeholder,
+html.light .wv-input::placeholder,
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #64748B !important;
+}
+
+/* Footer in Light Mode */
+:root[data-theme="light"] footer,
+html.light footer {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-top-color: rgba(0, 102, 255, 0.15) !important;
+  box-shadow: 0 -10px 30px rgba(0, 48, 120, 0.05);
+}
+
+/* Details FAQ in Light Mode */
+:root[data-theme="light"] details.gold-faq summary,
+html.light details.gold-faq summary {
+  color: var(--wv-heading) !important;
+}
+
+:root[data-theme="light"] details.gold-faq summary:hover,
+:root[data-theme="light"] details.gold-faq[open] summary,
+html.light details.gold-faq summary:hover,
+html.light details.gold-faq[open] summary {
+  color: var(--wv-cyan) !important;
 }
