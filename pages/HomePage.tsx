@@ -23,15 +23,34 @@ const HERO_SLIDES = [
 const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number | null>(null);
 
-  // Background slides rotation
+  // Background slides rotation (pauses when tab is hidden for efficiency)
   useEffect(() => {
     const timer = setInterval(() => {
+      if (typeof document !== 'undefined' && document.hidden) return;
       setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
     }, 5000);
 
     return () => clearInterval(timer);
   }, []);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 45) {
+      if (diff > 0) {
+        setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+      } else {
+        setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+      }
+    }
+    touchStartX.current = null;
+  };
 
   const scrollToContent = () => {
     if (contentRef.current) {
@@ -58,7 +77,9 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote }) => {
       <section 
         className="hero-slider-section"
         onClick={scrollToContent}
-        title="Click to reveal website"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        title="Click or swipe to reveal website"
       >
         {/* Slideshow background */}
         <div className="slideshow-track" aria-hidden="true">

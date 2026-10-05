@@ -5,7 +5,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { PageId } from '../types';
-import { PWAInstallButton } from './PWAInstallButton';
 
 interface NavbarProps {
   currentPage: PageId;
@@ -52,6 +51,21 @@ const Navbar: React.FC<NavbarProps> = ({
   const [isDragging, setIsDragging] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const sidebarRef = useRef<HTMLElement>(null);
+
+  // Lock body scroll and listen for Escape when mobile drawer is open
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    
+    document.body.style.overflow = 'hidden';
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [mobileMenuOpen]);
 
   // Sync with CSS variable --nav-w
   useEffect(() => {
@@ -268,8 +282,7 @@ const Navbar: React.FC<NavbarProps> = ({
         </button>
 
         {/* Right side: Theme toggle and mobile subtitle tag */}
-        <div className="flex items-center gap-2">
-          <PWAInstallButton className="text-[11px] px-2.5 py-1" />
+        <div className="flex items-center gap-2.5">
           {onToggleTheme && (
             <button
               type="button"
@@ -355,8 +368,7 @@ const Navbar: React.FC<NavbarProps> = ({
             </nav>
           </div>
 
-          <div className="pt-6 border-t border-[rgba(255,255,255,0.15)] flex flex-col gap-3 text-center">
-            <PWAInstallButton className="w-full justify-center py-2" />
+          <div className="pt-6 border-t border-[rgba(255,255,255,0.15)] flex flex-col gap-4 text-center">
             {onToggleTheme && (
               <button
                 type="button"
@@ -461,8 +473,7 @@ const Navbar: React.FC<NavbarProps> = ({
         </div>
 
         {/* Sidebar footer with Theme Toggle & tagline */}
-        <div className={`pt-4 border-t border-[rgba(255,255,255,0.15)] w-full flex flex-col gap-3 ${isIconOnly ? 'items-center' : ''}`}>
-          {!isIconOnly && <PWAInstallButton className="w-full justify-center" />}
+        <div className={`pt-4 border-t border-[rgba(255,255,255,0.15)] w-full flex flex-col gap-3.5 ${isIconOnly ? 'items-center' : ''}`}>
           {onToggleTheme && (
             <button
               type="button"

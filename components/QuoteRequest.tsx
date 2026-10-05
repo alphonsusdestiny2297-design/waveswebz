@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ServiceLevelId, QuoteRequestData } from '../types';
 import { SERVICE_LEVELS, AI_MODULES, WHATSAPP_CONTACT } from '../constants';
 
@@ -29,6 +29,22 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
   });
 
   const [submitted, setSubmitted] = useState(false);
+
+  // Lock body scroll and listen for Escape key when modal is open
+  useEffect(() => {
+    if (!isOpen) return;
+
+    document.body.style.overflow = 'hidden';
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -67,13 +83,21 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
       `Looking forward to Step 1 (Conversation) and our discovery chat!`
     );
 
-    window.open(`https://wa.me/2348000000000?text=${message}`, '_blank');
+    const phone = WHATSAPP_CONTACT.replace(/\+/g, '');
+    const url = `https://wa.me/${phone}?text=${message}`;
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
     <div className="fixed inset-0 z-[80] overflow-y-auto bg-black/75 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
       <div 
-        className="wv-glass rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-[0_20px_60px_rgba(0,0,0,0.85),0_0_35px_rgba(34,228,255,0.2)] border border-[rgba(255,255,255,0.22)] p-6 sm:p-8 relative text-[#F2F7FF] font-sans"
+        className="wv-glass rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-[0_20px_60px_rgba(0,0,0,0.85),0_0_35px_rgba(34,228,255,0.2)] border border-[rgba(255,255,255,0.22)] p-6 sm:p-8 relative text-[var(--wv-text)] font-sans"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -95,12 +119,12 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
               </svg>
             </div>
             
-            <h3 className="text-2xl font-bold font-display text-[#F2F7FF] mb-2 tracking-wide">Quote Request Received</h3>
-            <p className="text-sm text-[#A9BBDA] max-w-md mx-auto mb-6 leading-relaxed font-mono">
-              Thank you, <strong className="text-[#22E4FF]">{formData.contactPerson || 'friend'}</strong>. Our team will review your business requirements for <strong className="text-[#F2F7FF]">{formData.businessName || 'your business'}</strong> and reach out to begin <em>Step 1: Conversation</em>.
+            <h3 className="text-2xl font-bold font-display text-[var(--wv-heading)] mb-2 tracking-wide">Quote Request Received</h3>
+            <p className="text-sm text-[var(--wv-muted)] max-w-md mx-auto mb-6 leading-relaxed font-mono">
+              Thank you, <strong className="text-[#22E4FF]">{formData.contactPerson || 'friend'}</strong>. Our team will review your business requirements for <strong className="text-[var(--wv-heading)]">{formData.businessName || 'your business'}</strong> and reach out to begin <em>Step 1: Conversation</em>.
             </p>
 
-            <div className="p-4 rounded-xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.16)] text-xs text-left max-w-md mx-auto mb-8 space-y-2 text-[#A9BBDA] font-mono">
+            <div className="p-4 rounded-xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.16)] text-xs text-left max-w-md mx-auto mb-8 space-y-2 text-[var(--wv-muted)] font-mono">
               <div><strong className="text-[#22E4FF]">Service Level:</strong> {SERVICE_LEVELS.find(l => l.id === formData.serviceLevel)?.name}</div>
               <div><strong className="text-[#22E4FF]">Contact:</strong> {formData.phoneOrWhatsApp || formData.email}</div>
               <div><strong className="text-[#22E4FF]">Next Step:</strong> 15-minute discovery chat to confirm exact scope before any pricing is agreed.</div>
@@ -127,10 +151,10 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
               <span className="wv-tag block mb-1">
                 Project Discovery & Scope
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold font-display text-[#F2F7FF]">
+              <h3 className="text-2xl sm:text-3xl font-bold font-display text-[var(--wv-heading)]">
                 Request a Scope & Quote for Your Digital Home
               </h3>
-              <p className="text-xs sm:text-sm text-[#A9BBDA] mt-1 font-mono">
+              <p className="text-xs sm:text-sm text-[var(--wv-muted)] mt-1 font-mono">
                 Tell us about your business. We scope deliverables clearly so there are never surprises.
               </p>
             </div>
@@ -154,8 +178,8 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
                           : 'border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.04)] hover:border-[rgba(255,255,255,0.3)]'
                       }`}
                     >
-                      <span className="text-xs font-bold font-display text-[#F2F7FF] block">{level.name}</span>
-                      <span className="text-[11px] text-[#A9BBDA] leading-tight block mt-0.5 line-clamp-2 font-mono">{level.tagline}</span>
+                      <span className="text-xs font-bold font-display text-[var(--wv-heading)] block">{level.name}</span>
+                      <span className="text-[11px] text-[var(--wv-muted)] leading-tight block mt-0.5 line-clamp-2 font-mono">{level.tagline}</span>
                     </button>
                   ))}
                 </div>

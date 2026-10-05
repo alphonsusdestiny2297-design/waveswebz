@@ -208,9 +208,29 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen, onClose, onOpen, onOpenQu
     }
   };
 
+  // Close assistant on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   // Dynamic positioning for the opened chat modal relative to current button coordinates
   const modalStyle: React.CSSProperties = {};
-  if (position) {
+  if (typeof window !== 'undefined' && window.innerWidth < 640) {
+    // Mobile devices: centered bottom sheet style that always stays fully visible
+    modalStyle.bottom = '16px';
+    modalStyle.left = '4vw';
+    modalStyle.right = '4vw';
+    modalStyle.width = '92vw';
+    modalStyle.maxHeight = '82vh';
+    modalStyle.height = '520px';
+  } else if (position) {
     // Vertical placement: above if near bottom, below if near top
     if (position.y > 440) {
       modalStyle.bottom = `${window.innerHeight - position.y + 12}px`;
@@ -237,7 +257,7 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen, onClose, onOpen, onOpenQu
           className="fixed z-50 wv-glass wv-chat rounded-2xl shadow-[0_16px_50px_rgba(0,0,0,0.85),0_0_30px_rgba(34,228,255,0.25)] w-[92vw] sm:w-[410px] h-[570px] flex flex-col overflow-hidden border border-[rgba(255,255,255,0.22)] font-sans animate-in fade-in zoom-in-95 duration-200"
         >
           {/* Header */}
-          <div className="wv-chat__head bg-[#040914]/80 p-4 border-b border-[rgba(255,255,255,0.18)] flex justify-between items-center text-[#F2F7FF]">
+          <div className="wv-chat__head p-4 border-b border-[rgba(255,255,255,0.18)] flex justify-between items-center text-[var(--wv-heading)]">
             <div className="flex items-center gap-2.5">
               <div className="w-7 h-7 rounded-lg bg-[rgba(34,228,255,0.15)] border border-[rgba(34,228,255,0.4)] flex items-center justify-center text-[#22E4FF] font-bold text-xs font-mono">
                 W
@@ -253,7 +273,7 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen, onClose, onOpen, onOpenQu
             
             <button 
               onClick={onClose} 
-              className="text-[#A9BBDA] hover:text-[#fff] p-1 rounded-lg transition-colors"
+              className="text-[var(--wv-muted)] hover:text-[var(--wv-heading)] p-1 rounded-lg transition-colors"
               aria-label="Close concierge"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
@@ -264,14 +284,14 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen, onClose, onOpen, onOpenQu
 
           {/* Quick Prompts */}
           {messages.length <= 1 && (
-            <div className="p-3 bg-[#040914]/60 border-b border-[rgba(255,255,255,0.14)] flex flex-col gap-1.5">
+            <div className="p-3 border-b border-[rgba(255,255,255,0.14)] flex flex-col gap-1.5">
               <span className="text-[10px] uppercase tracking-wider text-[#22E4FF] font-mono">Suggested Questions:</span>
               <div className="flex flex-col gap-1">
                 {SUGGESTED_PROMPTS.slice(0, 3).map((prompt, i) => (
                   <button
                     key={i}
                     onClick={() => handleSend(prompt)}
-                    className="text-[11px] text-left px-2.5 py-1.5 rounded-lg bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(34,228,255,0.12)] text-[#A9BBDA] hover:text-[#F2F7FF] transition-colors border border-[rgba(255,255,255,0.12)] font-mono"
+                    className="text-[11px] text-left px-2.5 py-1.5 rounded-lg bg-[rgba(255,255,255,0.06)] hover:bg-[rgba(34,228,255,0.12)] text-[var(--wv-text)] hover:text-[#22E4FF] transition-colors border border-[rgba(255,255,255,0.12)] font-mono"
                   >
                     {prompt}
                   </button>
@@ -281,14 +301,14 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen, onClose, onOpen, onOpenQu
           )}
 
           {/* Chat Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3.5 bg-[#040914]/40" ref={scrollRef}>
+          <div className="flex-1 overflow-y-auto p-4 space-y-3.5" ref={scrollRef}>
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div 
                   className={`max-w-[85%] p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed ${
                     msg.role === 'user' 
                       ? 'wv-msg wv-msg--user rounded-tr-none shadow-md font-sans' 
-                      : 'wv-msg text-[#F2F7FF]/90 rounded-tl-none font-mono text-[12.5px]'
+                      : 'wv-msg text-[var(--wv-text)] rounded-tl-none font-mono text-[12.5px]'
                   }`}
                 >
                   {msg.text}
@@ -403,7 +423,7 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen, onClose, onOpen, onOpenQu
 
               <span className="w-2 h-2 rounded-full bg-[#22E4FF] shadow-[0_0_10px_#22E4FF] animate-pulse" />
 
-              <span className="text-xs font-display tracking-wider uppercase text-[#F2F7FF] whitespace-nowrap">
+              <span className="text-xs font-display tracking-wider uppercase text-[var(--wv-text)] whitespace-nowrap">
                 AI Concierge
               </span>
             </>

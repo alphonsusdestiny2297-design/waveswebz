@@ -137,24 +137,38 @@ function App() {
     setIsQuoteOpen(true);
   };
 
-  // Liquid Glass interactive cursor/touch illumination
+  // Liquid Glass interactive cursor/touch illumination (Optimized with requestAnimationFrame for 60-120fps efficiency)
   useEffect(() => {
-    const handlePointerMove = (e: PointerEvent | TouchEvent) => {
-      const p = 'touches' in e ? e.touches[0] : (e as PointerEvent);
-      if (!p) return;
+    let animationFrameId: number | null = null;
+    let latestPointer: { x: number; y: number } | null = null;
+
+    const updateGlow = () => {
+      if (!latestPointer) return;
+      const { x, y } = latestPointer;
       const glassElements = document.querySelectorAll<HTMLElement>('.wv-glass, .gold-card, .contact-gold-card, .site-sidebar');
       glassElements.forEach((el) => {
         const r = el.getBoundingClientRect();
-        if (p.clientX >= r.left - 60 && p.clientX <= r.right + 60 && p.clientY >= r.top - 60 && p.clientY <= r.bottom + 60) {
-          el.style.setProperty('--mx', `${p.clientX - r.left}px`);
-          el.style.setProperty('--my', `${p.clientY - r.top}px`);
+        if (x >= r.left - 60 && x <= r.right + 60 && y >= r.top - 60 && y <= r.bottom + 60) {
+          el.style.setProperty('--mx', `${x - r.left}px`);
+          el.style.setProperty('--my', `${y - r.top}px`);
         }
       });
+      animationFrameId = null;
+    };
+
+    const handlePointerMove = (e: PointerEvent | TouchEvent) => {
+      const p = 'touches' in e ? e.touches[0] : (e as PointerEvent);
+      if (!p) return;
+      latestPointer = { x: p.clientX, y: p.clientY };
+      if (!animationFrameId) {
+        animationFrameId = requestAnimationFrame(updateGlow);
+      }
     };
 
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
     window.addEventListener('touchmove', handlePointerMove, { passive: true });
     return () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('touchmove', handlePointerMove);
     };
@@ -163,16 +177,8 @@ function App() {
   const hideNavbarOnSlider = currentPage === 'home' && isAtSlider;
 
   return (
-    <div className="wv-body min-h-screen bg-[var(--wv-bg)] text-[var(--wv-text)] font-sans antialiased selection:bg-[#22E4FF]/30 selection:text-white flex flex-col justify-between relative overflow-x-hidden">
+    <div className="wv-body min-h-screen text-[var(--wv-text)] font-sans antialiased selection:bg-[#22E4FF]/30 selection:text-white flex flex-col justify-between relative overflow-x-hidden">
       
-      {/* Background Colour Washes (Glass needs vibrant luminous colour behind it) */}
-      <div className="wv-bg" aria-hidden="true">
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-      </div>
-
       {/* Sidebar Navbar (Smoothly hides when at slider to give the full picture) */}
       <Navbar 
         currentPage={currentPage}
