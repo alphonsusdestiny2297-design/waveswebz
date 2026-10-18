@@ -20,7 +20,10 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenQuote }) => {
         style={{ backgroundImage: `url('/assets/images/city_street_rainy_chrysler_1790663155616.jpg')` }}
       >
         <div className="page-header-overlay" />
-        <h1 className="font-display font-black uppercase tracking-[0.14em] neon-text">services</h1>
+        <span className="wv-tag mb-3 relative z-10">Packages & Scope</span>
+        <h1 className="disp">
+          Services & <span className="g">Packages</span>
+        </h1>
         <p className="page-header-subtitle">Launch · Growth · AI Growth</p>
       </div>
 
@@ -31,10 +34,10 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenQuote }) => {
           <span className="wv-tag block mb-2">
             Service Spectrum
           </span>
-          <h2 className="text-3xl sm:text-4xl font-display text-[#F2F7FF] mb-4 tracking-wide">
+          <h2 className="t disp">
             Clear, transparent scope tailored to your operational stage
           </h2>
-          <p className="text-base sm:text-lg text-[#CBD7EC] font-sans leading-relaxed max-w-3xl">
+          <p className="sub">
             We provide firm written agreements and clear deliverables before any build starts. Every tier is built on fast, mobile-first foundations.
           </p>
         </section>
@@ -46,52 +49,52 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenQuote }) => {
             return (
               <div 
                 key={level.id}
-                className={`gold-card flex flex-col justify-between ${
-                  isGrowth ? 'border-[#22E4FF] bg-[rgba(34,228,255,0.08)] shadow-[0_0_30px_rgba(34,228,255,0.25)]' : ''
+                className={`card p-6 sm:p-8 flex flex-col justify-between ${
+                  isGrowth ? 'border-[#2F7BFF] bg-[rgba(47,123,255,0.08)] shadow-[0_0_35px_rgba(47,123,255,0.25)]' : ''
                 }`}
               >
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-xs uppercase tracking-widest text-[#22E4FF] font-mono">
+                    <span className="text-xs uppercase tracking-widest text-[#7CC0FF] font-mono">
                       Package
                     </span>
                     {isGrowth && (
-                      <span className="text-[10px] uppercase tracking-wider text-[#22E4FF] bg-[#22E4FF]/15 px-2.5 py-0.5 rounded-full border border-[#22E4FF]/40 font-mono shadow-[0_0_10px_rgba(34,228,255,0.3)]">
+                      <span className="text-[10px] uppercase tracking-wider text-[#7CC0FF] bg-[#2F7BFF]/20 px-2.5 py-0.5 rounded-full border border-[#7CC0FF]/40 font-mono shadow-[0_0_10px_rgba(124,192,255,0.3)]">
                         Most Popular
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-3xl font-display text-[#F2F7FF] mb-1 tracking-wide">{level.name}</h3>
-                  <p className="text-xs text-[#2CFFB0] font-mono mb-4">{level.tagline}</p>
+                  <h3 className="disp text-3xl font-bold text-white mb-1 tracking-tight">{level.name}</h3>
+                  <p className="text-xs text-[#1FAE5B] font-mono mb-4">{level.tagline}</p>
                   
-                  <p className="text-xs sm:text-sm text-[#CBD7EC] font-sans leading-relaxed mb-6">
+                  <p className="m-0 text-sm sm:text-base text-[#CBD7EC] leading-relaxed mb-6">
                     {level.description}
                   </p>
 
                   <div className="space-y-4 mb-6">
                     <div>
-                      <h4 className="text-xs uppercase tracking-wider text-[#22E4FF] font-mono mb-2">
+                      <h4 className="text-xs uppercase tracking-wider text-[#7CC0FF] font-mono mb-2">
                         Included Features:
                       </h4>
-                      <ul className="space-y-2 border-t border-[rgba(34,228,255,0.18)] pt-3">
+                      <ul className="space-y-2 border-t border-white/10 pt-3 p-0 m-0 list-none">
                         {level.features.map((feat, i) => (
-                          <li key={i} className="flex items-start gap-2 text-xs text-[#CBD7EC] font-sans leading-relaxed">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#22E4FF] shadow-[0_0_8px_#22E4FF] mt-1.5 shrink-0" />
-                            <span>{feat}</span>
+                          <li key={i} className="flex items-start gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#7CC0FF] shadow-[0_0_8px_#7CC0FF] mt-2 shrink-0" />
+                            <p className="m-0 text-xs sm:text-sm text-[#CBD7EC] leading-relaxed">{feat}</p>
                           </li>
                         ))}
                       </ul>
                     </div>
 
                     <div>
-                      <h4 className="text-xs uppercase tracking-wider text-[#22E4FF] font-mono mb-2">
+                      <h4 className="text-xs uppercase tracking-wider text-[#7CC0FF] font-mono mb-2">
                         Key Deliverables:
                       </h4>
-                      <ul className="space-y-1.5 border-t border-[rgba(34,228,255,0.18)] pt-3">
+                      <ul className="space-y-1.5 border-t border-white/10 pt-3 p-0 m-0 list-none">
                         {level.deliverables.map((deliv, i) => (
-                          <li key={i} className="text-xs text-[#CBD7EC]/80 font-sans">
-                            — {deliv}
+                          <li key={i}>
+                            <p className="m-0 text-xs text-[#CBD7EC]/80">— {deliv}</p>
                           </li>
                         ))}
                       </ul>
@@ -99,14 +102,14 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenQuote }) => {
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-[rgba(34,228,255,0.2)]">
-                  <p className="text-[11px] text-[#A9BBDA] font-mono mb-4 italic">
+                <div className="pt-6 border-t border-white/10">
+                  <p className="text-[11px] text-[#A9BCDD] font-mono mb-4 italic">
                     {level.pricingNote}
                   </p>
                   <button
                     type="button"
                     onClick={() => onOpenQuote(level.id)}
-                    className={isGrowth ? 'cta w-full' : 'cta cta-secondary w-full'}
+                    className={isGrowth ? 'btn btn-solid w-full text-center' : 'btn glass btn-ghost w-full text-center'}
                   >
                     Select {level.name} Scope
                   </button>
@@ -121,17 +124,21 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenQuote }) => {
           <span className="wv-tag block mb-2">
             Common Inquiries
           </span>
-          <h2 className="text-2xl sm:text-3xl font-display text-[#F2F7FF] mb-6 tracking-wide">
+          <h2 className="t disp mb-3">
             Frequently Asked Questions
           </h2>
+          <p className="sub mb-6">
+            Direct answers on timelines, pricing, domain setup, and WhatsApp automation.
+          </p>
 
           <div className="space-y-2">
             {FAQS.map((faq, idx) => (
-              <details key={idx} className="gold-faq">
-                <summary className="font-display">
-                  {faq.question}
+              <details key={idx} className="card p-5">
+                <summary className="font-display font-semibold text-white cursor-pointer list-none flex justify-between items-center">
+                  <span>{faq.question}</span>
+                  <span className="text-[#7CC0FF] font-bold text-sm ml-2">↓</span>
                 </summary>
-                <p className="text-sm text-[#CBD7EC] font-sans leading-relaxed mt-3">
+                <p className="text-sm sm:text-base text-[#CBD7EC] leading-relaxed mt-3 pt-3 border-t border-white/10 mb-0">
                   {faq.answer}
                 </p>
               </details>
@@ -140,18 +147,18 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenQuote }) => {
         </section>
 
         {/* CTA */}
-        <section className="gold-card text-center p-8 sm:p-12">
-          <h2 className="text-2xl sm:text-3xl font-display text-[#F2F7FF] mb-4 tracking-wide">
+        <section className="card text-center p-8 sm:p-12">
+          <h2 className="t disp mb-3">
             Unsure which service level fits your business best?
           </h2>
-          <p className="text-sm sm:text-base text-[#CBD7EC] leading-relaxed font-sans mb-6 max-w-xl mx-auto">
+          <p className="sub mx-auto mb-6">
             Share what you currently do and where customer friction happens. We will recommend the exact right fit.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
               type="button"
               onClick={() => onOpenQuote()}
-              className="cta"
+              className="btn btn-solid"
             >
               Request a Project Quote
             </button>
@@ -159,7 +166,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenQuote }) => {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="cta cta-secondary"
+              className="btn btn-wa"
             >
               Speak with Us on WhatsApp
             </a>

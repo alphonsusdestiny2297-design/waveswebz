@@ -19,7 +19,10 @@ const JourneyPage: React.FC<JourneyPageProps> = ({ onOpenQuote }) => {
         style={{ backgroundImage: `url('/assets/images/skyline_golden_lake_1790663127615.jpg')` }}
       >
         <div className="page-header-overlay" />
-        <h1 className="font-display font-black uppercase tracking-[0.14em] neon-text">customer journey</h1>
+        <span className="wv-tag mb-3 relative z-10">Conversion Architecture</span>
+        <h1 className="disp">
+          Customer <span className="g">Journey</span>
+        </h1>
         <p className="page-header-subtitle">Discover · Understand · Trust · Enquire · Act</p>
       </div>
 
@@ -30,10 +33,10 @@ const JourneyPage: React.FC<JourneyPageProps> = ({ onOpenQuote }) => {
           <span className="wv-tag block mb-2">
             Architecture of Conversion
           </span>
-          <h2 className="text-3xl sm:text-4xl font-display text-[#F2F7FF] mb-4 tracking-wide">
+          <h2 className="t disp">
             How a Waves website turns attention into revenue
           </h2>
-          <p className="text-base sm:text-lg text-[#CBD7EC] font-sans leading-relaxed max-w-3xl">
+          <p className="sub">
             A website should never leave a visitor confused about what to do next. Every page and section we design corresponds to a precise stage in the buyer's psychology.
           </p>
         </section>
@@ -41,45 +44,45 @@ const JourneyPage: React.FC<JourneyPageProps> = ({ onOpenQuote }) => {
         {/* 5 Stages Detailed */}
         <section className="space-y-6">
           {CUSTOMER_JOURNEY_STAGES.map((stage) => (
-            <div key={stage.step} className="gold-card p-6 sm:p-8">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[rgba(255,255,255,0.18)] mb-4">
+            <div key={stage.step} className="card p-6 sm:p-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/10 mb-4">
                 <div className="flex items-baseline gap-3">
-                  <span className="font-display font-black text-3xl text-[#22E4FF] font-mono">0{stage.step}.</span>
-                  <h3 className="text-2xl font-display text-[#F2F7FF] tracking-wide">{stage.stage}</h3>
+                  <span className="font-display font-black text-3xl text-[#7CC0FF] font-mono">0{stage.step}.</span>
+                  <h3 className="disp text-2xl font-bold text-white tracking-tight">{stage.stage}</h3>
                 </div>
-                <span className="text-xs tracking-wider uppercase font-mono text-[#22E4FF]">
+                <span className="text-xs tracking-wider uppercase font-mono text-[#7CC0FF]">
                   Stage Purpose
                 </span>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider text-[#22E4FF] font-mono mb-1">
+                  <h4 className="text-xs uppercase tracking-wider text-[#7CC0FF] font-mono mb-2">
                     What Happens:
                   </h4>
-                  <p className="text-sm text-[#CBD7EC] font-sans leading-relaxed">
+                  <p className="m-0 text-sm sm:text-base text-[#CBD7EC] leading-relaxed">
                     {stage.purpose}
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider text-[#22E4FF] font-mono mb-1">
+                  <h4 className="text-xs uppercase tracking-wider text-[#7CC0FF] font-mono mb-2">
                     Friction Removed:
                   </h4>
-                  <p className="text-sm text-[#CBD7EC]/90 font-sans leading-relaxed">
+                  <p className="m-0 text-sm sm:text-base text-[#CBD7EC]/90 leading-relaxed">
                     {stage.frictionRemoved}
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="text-xs uppercase tracking-wider text-[#22E4FF] font-mono mb-1">
+                  <h4 className="text-xs uppercase tracking-wider text-[#7CC0FF] font-mono mb-2">
                     Built-In Features:
                   </h4>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {stage.exampleFeatures.map((feat, i) => (
                       <span 
                         key={i} 
-                        className="text-xs font-mono text-[#2CFFB0] bg-[rgba(34,228,255,0.08)] px-2.5 py-1 rounded border border-[rgba(34,228,255,0.25)]"
+                        className="text-xs font-mono text-[#1FAE5B] bg-[#1FAE5B]/10 px-2.5 py-1 rounded-full border border-[#1FAE5B]/30"
                       >
                         {feat}
                       </span>
@@ -92,15 +95,18 @@ const JourneyPage: React.FC<JourneyPageProps> = ({ onOpenQuote }) => {
         </section>
 
         {/* CTA */}
-        <section className="gold-card text-center p-8 sm:p-12">
-          <h2 className="text-2xl sm:text-3xl font-display text-[#F2F7FF] mb-4 tracking-wide">
+        <section className="card text-center p-8 sm:p-12">
+          <h2 className="t disp mb-3">
             Build a website designed for real customer action.
           </h2>
+          <p className="sub mx-auto mb-6">
+            Turn casual visitors into paying clients with a clear, guided journey.
+          </p>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-6">
             <button
               type="button"
               onClick={onOpenQuote}
-              className="cta"
+              className="btn btn-solid"
             >
               Request a Project Quote
             </button>
@@ -108,7 +114,7 @@ const JourneyPage: React.FC<JourneyPageProps> = ({ onOpenQuote }) => {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="cta cta-secondary"
+              className="btn btn-wa"
             >
               Consult on WhatsApp
             </a>

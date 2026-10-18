@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { ServiceLevelId, QuoteRequestData } from '../types';
 import { SERVICE_LEVELS, AI_MODULES, WHATSAPP_CONTACT } from '../constants';
+import { WavesLogo } from './WavesLogo';
 
 interface QuoteRequestProps {
   isOpen: boolean;
@@ -95,15 +96,15 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
   };
 
   return (
-    <div className="fixed inset-0 z-[80] overflow-y-auto bg-black/75 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
+    <div className="fixed inset-0 z-[80] overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6">
       <div 
-        className="wv-glass rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-[0_20px_60px_rgba(0,0,0,0.85),0_0_35px_rgba(34,228,255,0.2)] border border-[rgba(255,255,255,0.22)] p-6 sm:p-8 relative text-[var(--wv-text)] font-sans"
+        className="wv-glass rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-[0_20px_60px_rgba(0,0,0,0.85),0_0_35px_rgba(47,123,255,0.25)] border border-[rgba(255,255,255,0.22)] p-4 sm:p-8 relative text-[var(--wv-text)] font-sans"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button 
           onClick={onClose}
-          className="absolute top-5 right-5 text-[#A9BBDA] hover:text-[#fff] p-1.5 rounded-lg transition-colors"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 text-[#A9BBDA] hover:text-[#fff] p-1.5 rounded-lg transition-colors"
           aria-label="Close quote modal"
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -113,33 +114,33 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
 
         {submitted ? (
           <div className="text-center py-8">
-            <div className="w-14 h-14 rounded-full bg-[rgba(44,255,176,0.18)] text-[#2CFFB0] border border-[#2CFFB0]/40 flex items-center justify-center mx-auto mb-4 shadow-[0_0_20px_rgba(44,255,176,0.3)]">
+            <div className="w-14 h-14 rounded-full bg-[#1FAE5B]/20 text-[#1FAE5B] border border-[#1FAE5B]/40 flex items-center justify-center mx-auto mb-4 shadow-[0_0_20px_rgba(31,174,91,0.3)]">
               <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
             
-            <h3 className="text-2xl font-bold font-display text-[var(--wv-heading)] mb-2 tracking-wide">Quote Request Received</h3>
-            <p className="text-sm text-[var(--wv-muted)] max-w-md mx-auto mb-6 leading-relaxed font-mono">
-              Thank you, <strong className="text-[#22E4FF]">{formData.contactPerson || 'friend'}</strong>. Our team will review your business requirements for <strong className="text-[var(--wv-heading)]">{formData.businessName || 'your business'}</strong> and reach out to begin <em>Step 1: Conversation</em>.
+            <h3 className="text-2xl font-bold font-display text-white mb-2 tracking-tight">Quote Request Received</h3>
+            <p className="text-sm text-[#CBD7EC] max-w-md mx-auto mb-6 leading-relaxed font-sans">
+              Thank you, <strong className="text-[#7CC0FF]">{formData.contactPerson || 'friend'}</strong>. Our team will review your business requirements for <strong className="text-white">{formData.businessName || 'your business'}</strong> and reach out to begin <em>Step 1: Conversation</em>.
             </p>
 
-            <div className="p-4 rounded-xl bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.16)] text-xs text-left max-w-md mx-auto mb-8 space-y-2 text-[var(--wv-muted)] font-mono">
-              <div><strong className="text-[#22E4FF]">Service Level:</strong> {SERVICE_LEVELS.find(l => l.id === formData.serviceLevel)?.name}</div>
-              <div><strong className="text-[#22E4FF]">Contact:</strong> {formData.phoneOrWhatsApp || formData.email}</div>
-              <div><strong className="text-[#22E4FF]">Next Step:</strong> 15-minute discovery chat to confirm exact scope before any pricing is agreed.</div>
+            <div className="p-4 rounded-xl bg-white/5 border border-white/15 text-xs text-left max-w-md mx-auto mb-8 space-y-2 text-[#CBD7EC] font-sans">
+              <div><strong className="text-[#7CC0FF]">Service Level:</strong> {SERVICE_LEVELS.find(l => l.id === formData.serviceLevel)?.name}</div>
+              <div><strong className="text-[#7CC0FF]">Contact:</strong> {formData.phoneOrWhatsApp || formData.email}</div>
+              <div><strong className="text-[#7CC0FF]">Next Step:</strong> 15-minute discovery chat to confirm exact scope before any pricing is agreed.</div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={handleSendWhatsApp}
-                className="wv-btn wv-btn--primary text-xs py-3 px-6"
+                className="btn btn-wa text-xs py-3 px-6"
               >
                 <span>Continue on WhatsApp Now</span>
               </button>
               <button
                 onClick={onClose}
-                className="cta cta-secondary text-xs py-3 px-6"
+                className="btn glass btn-ghost text-xs py-3 px-6"
               >
                 Close Window
               </button>
@@ -148,9 +149,12 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
         ) : (
           <div>
             <div className="mb-6">
-              <span className="wv-tag block mb-1">
-                Project Discovery & Scope
-              </span>
+              <div className="flex items-center gap-2 mb-2">
+                <WavesLogo size={16} className="!w-6 !h-6 !rounded-md" />
+                <span className="wv-tag">
+                  Project Discovery & Scope
+                </span>
+              </div>
               <h3 className="text-2xl sm:text-3xl font-bold font-display text-[var(--wv-heading)]">
                 Request a Scope & Quote for Your Digital Home
               </h3>
@@ -163,7 +167,7 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
               
               {/* Step 1: Select Service Level */}
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#22E4FF] font-mono mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#7CC0FF] font-mono mb-2">
                   1. Desired Service Level
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -174,12 +178,12 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
                       onClick={() => setFormData({ ...formData, serviceLevel: level.id })}
                       className={`p-3.5 rounded-xl border text-left transition-all ${
                         formData.serviceLevel === level.id 
-                          ? 'border-[#22E4FF] bg-[rgba(34,228,255,0.12)] shadow-[0_0_18px_rgba(34,228,255,0.25)]' 
-                          : 'border-[rgba(255,255,255,0.15)] bg-[rgba(255,255,255,0.04)] hover:border-[rgba(255,255,255,0.3)]'
+                          ? 'border-[#7CC0FF] bg-[#2F7BFF]/20 shadow-[0_0_18px_rgba(124,192,255,0.25)]' 
+                          : 'border-white/15 bg-white/5 hover:border-white/30'
                       }`}
                     >
-                      <span className="text-xs font-bold font-display text-[var(--wv-heading)] block">{level.name}</span>
-                      <span className="text-[11px] text-[var(--wv-muted)] leading-tight block mt-0.5 line-clamp-2 font-mono">{level.tagline}</span>
+                      <span className="text-xs font-bold font-display text-white block">{level.name}</span>
+                      <span className="text-[11px] text-[#CBD7EC] leading-tight block mt-0.5 line-clamp-2 font-sans">{level.tagline}</span>
                     </button>
                   ))}
                 </div>
@@ -187,21 +191,21 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
 
               {/* Step 2: Optional AI Modules (if AI Growth selected) */}
               {formData.serviceLevel === 'ai-growth' && (
-                <div className="p-4 rounded-xl bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.15)]">
-                  <label className="block text-xs font-bold uppercase tracking-wider text-[#22E4FF] font-mono mb-2">
+                <div className="p-4 rounded-xl bg-white/5 border border-white/15">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#7CC0FF] font-mono mb-2">
                     Optional AI Modules (Choose any that fit your operation):
                   </label>
                   <div className="space-y-2">
                     {AI_MODULES.map(m => (
-                      <label key={m.id} className="flex items-start gap-2.5 text-xs text-[#A9BBDA] cursor-pointer font-mono">
+                      <label key={m.id} className="flex items-start gap-2.5 text-xs text-[#CBD7EC] cursor-pointer font-sans">
                         <input
                           type="checkbox"
                           checked={formData.selectedAIModules.includes(m.name)}
                           onChange={() => toggleAIModule(m.name)}
-                          className="mt-0.5 accent-[#22E4FF] rounded"
+                          className="mt-0.5 accent-[#2F7BFF] rounded"
                         />
                         <div>
-                          <strong className="text-[#F2F7FF]">{m.name}</strong> — {m.description}
+                          <strong className="text-white">{m.name}</strong> — {m.description}
                         </div>
                       </label>
                     ))}
@@ -211,13 +215,13 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
 
               {/* Step 3: Business Information */}
               <div className="space-y-4">
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#22E4FF] font-mono">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#7CC0FF] font-mono">
                   2. Business & Contact Information
                 </label>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-medium text-[#A9BBDA] mb-1 font-mono">Business Name *</label>
+                    <label className="block text-xs font-medium text-[#CBD7EC] mb-1 font-sans">Business Name *</label>
                     <input
                       type="text"
                       required
@@ -229,7 +233,7 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-[#A9BBDA] mb-1 font-mono">Contact Person Name *</label>
+                    <label className="block text-xs font-medium text-[#CBD7EC] mb-1 font-sans">Contact Person Name *</label>
                     <input
                       type="text"
                       required
@@ -241,7 +245,7 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-[#A9BBDA] mb-1 font-mono">WhatsApp / Phone Number *</label>
+                    <label className="block text-xs font-medium text-[#CBD7EC] mb-1 font-sans">WhatsApp / Phone Number *</label>
                     <input
                       type="tel"
                       required
@@ -253,7 +257,7 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-[#A9BBDA] mb-1 font-mono">Email Address</label>
+                    <label className="block text-xs font-medium text-[#CBD7EC] mb-1 font-sans">Email Address</label>
                     <input
                       type="email"
                       placeholder="e.g. clinic@apexhealth.ng"
@@ -266,39 +270,39 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                   <div>
-                    <label className="block text-xs font-medium text-[#A9BBDA] mb-1 font-mono">Business Category</label>
+                    <label className="block text-xs font-medium text-[#CBD7EC] mb-1 font-sans">Business Category</label>
                     <select
                       value={formData.businessType}
                       onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
                       className="wv-input py-2 text-xs"
                     >
-                      <option className="bg-[#040914] text-[#F2F7FF]">Professional Services & Consulting</option>
-                      <option className="bg-[#040914] text-[#F2F7FF]">Healthcare, Clinic or Pharmacy</option>
-                      <option className="bg-[#040914] text-[#F2F7FF]">Hospitality, Restaurant or Event Venue</option>
-                      <option className="bg-[#040914] text-[#F2F7FF]">Retail, Boutique or E-commerce</option>
-                      <option className="bg-[#040914] text-[#F2F7FF]">Real Estate, Construction or Engineering</option>
-                      <option className="bg-[#040914] text-[#F2F7FF]">Education, School or Training Center</option>
-                      <option className="bg-[#040914] text-[#F2F7FF]">Logistics, Cleaning or Field Services</option>
-                      <option className="bg-[#040914] text-[#F2F7FF]">Other SME / Growing Brand</option>
+                      <option className="bg-[#050E22] text-[#EAF2FF]">Professional Services & Consulting</option>
+                      <option className="bg-[#050E22] text-[#EAF2FF]">Healthcare, Clinic or Pharmacy</option>
+                      <option className="bg-[#050E22] text-[#EAF2FF]">Hospitality, Restaurant or Event Venue</option>
+                      <option className="bg-[#050E22] text-[#EAF2FF]">Retail, Boutique or E-commerce</option>
+                      <option className="bg-[#050E22] text-[#EAF2FF]">Real Estate, Construction or Engineering</option>
+                      <option className="bg-[#050E22] text-[#EAF2FF]">Education, School or Training Center</option>
+                      <option className="bg-[#050E22] text-[#EAF2FF]">Logistics, Cleaning or Field Services</option>
+                      <option className="bg-[#050E22] text-[#EAF2FF]">Other SME / Growing Brand</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-[#A9BBDA] mb-1 font-mono">Logo & Content Readiness</label>
+                    <label className="block text-xs font-medium text-[#CBD7EC] mb-1 font-sans">Logo & Content Readiness</label>
                     <select
                       value={formData.hasLogoAndContent}
                       onChange={(e) => setFormData({ ...formData, hasLogoAndContent: e.target.value as any })}
                       className="wv-input py-2 text-xs"
                     >
-                      <option value="ready" className="bg-[#040914] text-[#F2F7FF]">Ready (Logo, service details & photos on hand)</option>
-                      <option value="partial" className="bg-[#040914] text-[#F2F7FF]">Partial (Have some info, need help organizing)</option>
-                      <option value="need-help" className="bg-[#040914] text-[#F2F7FF]">Need Help (Starting from scratch)</option>
+                      <option value="ready" className="bg-[#050E22] text-[#EAF2FF]">Ready (Logo, service details & photos on hand)</option>
+                      <option value="partial" className="bg-[#050E22] text-[#EAF2FF]">Partial (Have some info, need help organizing)</option>
+                      <option value="need-help" className="bg-[#050E22] text-[#EAF2FF]">Need Help (Starting from scratch)</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-[#A9BBDA] mb-1 font-mono">Primary Goal for the Website</label>
+                  <label className="block text-xs font-medium text-[#CBD7EC] mb-1 font-sans">Primary Goal for the Website</label>
                   <input
                     type="text"
                     value={formData.primaryGoal}
@@ -310,22 +314,22 @@ const QuoteRequest: React.FC<QuoteRequestProps> = ({ isOpen, onClose, initialLev
               </div>
 
               {/* Pricing Policy Reminder */}
-              <div className="p-3.5 rounded-xl bg-[rgba(34,228,255,0.08)] border border-[rgba(34,228,255,0.25)] text-[11px] text-[#A9BBDA] leading-relaxed font-mono">
-                <strong className="text-[#22E4FF]">Waves Pricing Standard:</strong> We review your pages and content readiness, then give you an exact, transparent quote before work begins. No hidden charges or unexpected fees.
+              <div className="p-3.5 rounded-xl bg-[#2F7BFF]/10 border border-[#2F7BFF]/30 text-[11px] text-[#CBD7EC] leading-relaxed font-sans">
+                <strong className="text-[#7CC0FF]">Waves Pricing Standard:</strong> We review your pages and content readiness, then give you an exact, transparent quote before work begins. No hidden charges or unexpected fees.
               </div>
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <button
                   type="submit"
-                  className="flex-1 py-3 wv-btn wv-btn--primary text-xs uppercase tracking-wider text-center"
+                  className="flex-1 py-3 btn btn-solid text-xs uppercase tracking-wider text-center justify-center"
                 >
                   Submit for Review & Quote
                 </button>
                 <button
                   type="button"
                   onClick={handleSendWhatsApp}
-                  className="px-5 py-3 cta cta-secondary text-xs uppercase tracking-wider flex items-center justify-center gap-2"
+                  className="px-5 py-3 btn btn-wa text-xs uppercase tracking-wider flex items-center justify-center gap-2"
                 >
                   <span>Fast WhatsApp Quote</span>
                 </button>

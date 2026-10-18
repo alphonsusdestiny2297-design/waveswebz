@@ -24,41 +24,6 @@ function App() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState<ServiceLevelId>('growth');
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [isAtSlider, setIsAtSlider] = useState(true);
-
-  // Theme management: default to system preference or saved preference
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    try {
-      const saved = localStorage.getItem('waves_theme');
-      if (saved === 'light' || saved === 'dark') return saved;
-      if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        return 'light';
-      }
-    } catch {
-      // safe fallback
-    }
-    return 'dark';
-  });
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    if (theme === 'light') {
-      document.documentElement.classList.add('light');
-      document.documentElement.classList.remove('dark');
-    } else {
-      document.documentElement.classList.add('dark');
-      document.documentElement.classList.remove('light');
-    }
-    try {
-      localStorage.setItem('waves_theme', theme);
-    } catch {
-      // safe fallback
-    }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
-  };
 
   // Sync with browser history and hash routing on mount
   useEffect(() => {
@@ -90,41 +55,9 @@ function App() {
     };
   }, []);
 
-  // Track scroll position to remove navbar ONLY on PC / desktop versions (>= 768px)
-  useEffect(() => {
-    const handleScroll = () => {
-      // Mobile devices (< 768px) use the web before this feature (navbar is never removed on mobile)
-      if (typeof window !== 'undefined' && window.innerWidth < 768) {
-        setIsAtSlider(false);
-        return;
-      }
-      if (currentPage !== 'home') {
-        setIsAtSlider(false);
-        return;
-      }
-      // When PC user is viewing the slider (top 60% of viewport height)
-      const threshold = (window.innerHeight || 800) * 0.6;
-      const atTop = window.scrollY < threshold;
-      setIsAtSlider(atTop);
-    };
-
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, [currentPage]);
-
   const navigateTo = (page: PageId) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (page === 'home' && typeof window !== 'undefined' && window.innerWidth >= 768) {
-      setIsAtSlider(true);
-    } else {
-      setIsAtSlider(false);
-    }
     try {
       window.history.pushState(null, '', `#/${page}`);
     } catch {
@@ -145,7 +78,7 @@ function App() {
     const updateGlow = () => {
       if (!latestPointer) return;
       const { x, y } = latestPointer;
-      const glassElements = document.querySelectorAll<HTMLElement>('.wv-glass, .gold-card, .contact-gold-card, .site-sidebar');
+      const glassElements = document.querySelectorAll<HTMLElement>('.glass, .card, .wv-glass, .gold-card');
       glassElements.forEach((el) => {
         const r = el.getBoundingClientRect();
         if (x >= r.left - 60 && x <= r.right + 60 && y >= r.top - 60 && y <= r.bottom + 60) {
@@ -174,23 +107,18 @@ function App() {
     };
   }, []);
 
-  const hideNavbarOnSlider = currentPage === 'home' && isAtSlider;
-
   return (
-    <div className="wv-body min-h-screen text-[var(--wv-text)] font-sans antialiased selection:bg-[#22E4FF]/30 selection:text-white flex flex-col justify-between relative overflow-x-hidden">
+    <div className="wv-body min-h-screen text-[var(--wv-text)] font-sans antialiased selection:bg-[#2F7BFF]/30 selection:text-white flex flex-col justify-between relative overflow-x-hidden">
       
-      {/* Sidebar Navbar (Smoothly hides when at slider to give the full picture) */}
+      {/* Top Floating Glass Navigation Bar (from uploaded UI) */}
       <Navbar 
         currentPage={currentPage}
         onNavigate={navigateTo}
         onOpenQuote={() => handleOpenQuote()}
-        hideNavbar={hideNavbarOnSlider}
-        theme={theme}
-        onToggleTheme={toggleTheme}
       />
 
-      {/* Main Content Area: in full-slider-mode, margin-left is 0 for an uncompromised full picture */}
-      <div className={`site-main flex-1 flex flex-col justify-between ${hideNavbarOnSlider ? 'full-slider-mode' : ''}`}>
+      {/* Main Content Area */}
+      <div className="site-main flex-1 flex flex-col justify-between w-full">
         <main className="flex-1 flex flex-col">
           <div key={currentPage} className="page-view-fade flex-1 flex flex-col">
             {currentPage === 'home' && (
