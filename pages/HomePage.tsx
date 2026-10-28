@@ -543,7 +543,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote, onO
                   <button
                     type="button"
                     onClick={() => onOpenQuote(level.id)}
-                    className={isGrowth ? 'btn btn-blue w-full text-center' : 'btn glass btn-ghost w-full text-center'}
+                    className={isGrowth ? 'btn btn-solid w-full text-center' : 'btn glass btn-ghost w-full text-center'}
                   >
                     Select {level.name}
                   </button>

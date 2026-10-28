@@ -6,7 +6,7 @@
     <title>Waves — Websites and WhatsApp AI for Nigerian businesses</title>
     <meta name="description" content="Fast, mobile-first business websites for Nigerian SMEs, with AI that answers customers and books appointments on WhatsApp." />
     <meta name="keywords" content="Nigerian SME websites, WhatsApp AI, SME web design Lagos, digital home for business, mobile-first websites, WhatsApp chatbot Nigeria, business website modernization, lead conversion" />
-    <link rel="canonical" href="https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/" />
+    <link rel="canonical" href="https://waveswebz.vercel.app/" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="author" content="Waves" />
     <meta name="theme-color" content="#04122E" />
@@ -14,10 +14,9 @@
     <!-- Typography: Manrope & Sora -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
-    <!-- Progressive Web App (PWA) Tags -->
-    <link rel="manifest" href="/manifest.json" />
+    <!-- Progressive Web App (PWA) Tags — manifest link is injected by vite-plugin-pwa -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -28,24 +27,24 @@
 
     <!-- Open Graph / WhatsApp / Facebook Social Sharing -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/" />
+    <meta property="og:url" content="https://waveswebz.vercel.app/" />
     <meta property="og:site_name" content="Waves" />
     <meta property="og:title" content="Waves — SME Digital Transformation & Business Websites" />
     <meta property="og:description" content="Fast, reliable, mobile-first business websites for Nigerian SMEs. Your digital home engineered to build trust and drive real customer action on WhatsApp." />
-    <meta property="og:image" content="https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/og-image.jpg" />
-    <meta property="og:image:secure_url" content="https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/og-image.jpg" />
+    <meta property="og:image" content="https://waveswebz.vercel.app/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://waveswebz.vercel.app/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Waves — SME Digital Transformation & Modern Digital Homes" />
-    <link rel="image_src" href="https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/og-image.jpg" />
+    <link rel="image_src" href="https://waveswebz.vercel.app/og-image.jpg" />
 
     <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Waves" />
     <meta name="twitter:title" content="Waves — SME Digital Transformation & Business Websites" />
     <meta name="twitter:description" content="Fast, reliable, mobile-first business websites for Nigerian SMEs. Your digital home engineered to build trust and drive real customer action on WhatsApp." />
-    <meta name="twitter:image" content="https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/og-image.jpg" />
+    <meta name="twitter:image" content="https://waveswebz.vercel.app/og-image.jpg" />
     <meta name="twitter:image:alt" content="Waves — SME Digital Transformation & Modern Digital Homes" />
 
     <!-- Schema.org JSON-LD Structured Data for Google & AI Answer Engines -->
@@ -56,7 +55,7 @@
         "@type": "WebSite",
         "name": "Waves",
         "alternateName": "Waves Digital Homes",
-        "url": "https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/",
+        "url": "https://waveswebz.vercel.app/",
         "description": "Fast, reliable, mobile-first business websites powering SME digital transformation.",
         "inLanguage": "en"
       },
@@ -64,9 +63,9 @@
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
         "name": "Waves",
-        "image": "https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/og-image.jpg",
+        "image": "https://waveswebz.vercel.app/og-image.jpg",
         "description": "Fast, reliable, mobile-first business websites powering digital transformation for small and medium enterprises (SMEs).",
-        "url": "https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/",
+        "url": "https://waveswebz.vercel.app/",
         "priceRange": "$$",
         "areaServed": {
           "@type": "Country",
@@ -149,19 +148,6 @@
           }
         }, true);
 
-        // Immediate Theme initialization to prevent flash
-        try {
-          var saved = localStorage.getItem('waves_theme');
-          var isLight = saved === 'light' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
-          if (isLight) {
-            document.documentElement.setAttribute('data-theme', 'light');
-            document.documentElement.classList.add('light');
-          } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.documentElement.classList.add('dark');
-          }
-        } catch(e) {}
-
         // Dynamic Canonical and OG URL & Image Resolution
         try {
           if (typeof window !== 'undefined' && window.location) {
@@ -182,66 +168,25 @@
           }
         } catch(e) {}
 
-        // Service Worker registration for PWA installability and offline support
-        if ('serviceWorker' in navigator) {
-          window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/sw.js').then(function(reg) {
-              console.log('Waves PWA ServiceWorker active:', reg.scope);
-            }).catch(function() {
-              // fallback gracefully
-            });
-          });
-        }
+        // NOTE: service worker registration is handled by vite-plugin-pwa
+        // (see registerSW.js injected at build time) — do not register /sw.js here,
+        // doing so caused double registration with a conflicting hand-written worker.
       })();
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                50: '#F0F9FF',
-                100: '#E0F2FE',
-                500: '#0EA5E9',
-                600: '#0284C7',
-                700: '#0369A1',
-                800: '#075985',
-                900: '#0C4A6E',
-                950: '#082F49'
-              },
-              whatsapp: {
-                500: '#25D366',
-                600: '#128C7E',
-                700: '#075E54'
-              }
-            },
-            fontFamily: {
-              display: ['Molgan', 'Orbitron', 'Space Grotesk', 'system-ui', 'sans-serif'],
-              sans: ['Space Grotesk', 'system-ui', '-apple-system', 'sans-serif'],
-              heading: ['Molgan', 'Orbitron', 'Space Grotesk', 'sans-serif'],
-              mono: ['JetBrains Mono', 'ui-monospace', 'monospace']
-            }
-          }
-        }
-      }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
       html {
         scroll-behavior: smooth;
-        scroll-padding-top: 80px;
-        background-color: var(--wv-bg, #040914);
+        scroll-padding-top: 100px;
+        background-color: var(--wv-bg, #04122E);
         color: var(--wv-text, #F2F7FF);
       }
 
       body {
-        font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-        background-color: var(--wv-bg, #040914);
+        font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+        background-color: var(--wv-bg, #04122E);
         color: var(--wv-text, #F2F7FF);
         overflow-x: hidden;
+        overflow-x: clip;
       }
 
       /* Clean Liquid Glass custom scrollbars */
@@ -262,16 +207,6 @@
         box-shadow: 0 0 10px rgba(34, 228, 255, 0.5);
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "@google/genai": "https://esm.sh/@google/genai@^1.29.0",
-    "react/": "https://esm.sh/react@^19.2.0/",
-    "react": "https://esm.sh/react@^19.2.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.0/"
-  }
-}
-</script>
 <link rel="stylesheet" href="/index.css">
 </head>
   <body class="antialiased selection:bg-[#22E4FF]/30 selection:text-white">

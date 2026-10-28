@@ -82,7 +82,7 @@ const AIPage: React.FC<AIPageProps> = ({ onOpenChat, onOpenQuote }) => {
                 <button
                   type="button"
                   onClick={onOpenChat}
-                  className="text-xs text-[#1FAE5B] hover:text-[#7CC0FF] transition-colors font-mono underline font-bold"
+                  className="text-left text-[var(--link)] font-bold cursor-pointer hover:underline text-sm"
                 >
                   Test Demo Concierge →
                 </button>

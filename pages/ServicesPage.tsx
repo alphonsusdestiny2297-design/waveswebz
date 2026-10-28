@@ -133,14 +133,9 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenQuote }) => {
 
           <div className="space-y-2">
             {FAQS.map((faq, idx) => (
-              <details key={idx} className="card p-5">
-                <summary className="font-display font-semibold text-white cursor-pointer list-none flex justify-between items-center">
-                  <span>{faq.question}</span>
-                  <span className="text-[#7CC0FF] font-bold text-sm ml-2">↓</span>
-                </summary>
-                <p className="text-sm sm:text-base text-[#CBD7EC] leading-relaxed mt-3 pt-3 border-t border-white/10 mb-0">
-                  {faq.answer}
-                </p>
+              <details key={idx} className="card">
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
               </details>
             ))}
           </div>

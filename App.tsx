@@ -108,7 +108,7 @@ function App() {
   }, []);
 
   return (
-    <div className="wv-body min-h-screen text-[var(--wv-text)] font-sans antialiased selection:bg-[#2F7BFF]/30 selection:text-white flex flex-col justify-between relative overflow-x-hidden">
+    <div className="wv-body min-h-screen text-[var(--wv-text)] font-sans antialiased selection:bg-[#2F7BFF]/30 selection:text-white flex flex-col justify-between relative">
       
       {/* Top Floating Glass Navigation Bar (from uploaded UI) */}
       <Navbar 

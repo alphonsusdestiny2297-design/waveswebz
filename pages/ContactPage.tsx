@@ -6,6 +6,13 @@
 import React, { useState } from 'react';
 import { WHATSAPP_LINK, WHATSAPP_CONTACT } from '../constants';
 
+const SERVICE_LABELS: Record<string, string> = {
+  launch: 'Launch — Digital Home Foundation',
+  growth: 'Growth — Conversion & Full Catalog',
+  'ai-growth': 'AI Growth — Growth + Grounded AI Concierge',
+  consultation: 'General Consultation & Redesign'
+};
+
 const ContactPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -15,8 +22,32 @@ const ContactPage: React.FC = () => {
     message: ''
   });
 
+  const buildWhatsAppUrl = () => {
+    const cleanNumber = WHATSAPP_CONTACT.replace(/\D/g, '');
+    const lines = [
+      'Hello Waves, I would like to discuss a project.',
+      '',
+      `Name / Business: ${formData.name}`,
+      `WhatsApp: ${formData.emailOrPhone}`,
+      `Interested in: ${SERVICE_LABELS[formData.businessType] || 'General consultation'}`,
+      `Project details: ${formData.message || '(not provided yet)'}`
+    ];
+    return `https://wa.me/${cleanNumber}?text=${encodeURIComponent(lines.join('\n'))}`;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const targetUrl = buildWhatsAppUrl();
+
+    // Open WhatsApp with the enquiry pre-filled (same pattern as the home page form)
+    const a = document.createElement('a');
+    a.href = targetUrl;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
     setSubmitted(true);
   };
 
@@ -114,18 +145,21 @@ const ContactPage: React.FC = () => {
 
               {submitted ? (
                 <div className="p-6 rounded-2xl bg-[#1747D8]/20 border border-[#2F7BFF] text-center space-y-3">
-                  <div className="font-display font-extrabold uppercase tracking-tight text-3xl text-white">Thank you</div>
+                  <div className="font-display font-extrabold uppercase tracking-tight text-3xl text-white">One more step</div>
                   <p className="text-sm font-sans text-[#EAF2FF]">
-                    Your message has been received. Our team will contact you shortly.
+                    WhatsApp is opening with your details already filled in. Tap the send button there and your enquiry reaches us straight away.
                   </p>
                   <a
-                    href={WHATSAPP_LINK}
+                    href={buildWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-wa inline-flex mt-2"
                   >
-                    Open Immediate WhatsApp Chat →
+                    Open WhatsApp again →
                   </a>
+                  <p className="text-xs text-[#A9BCDD] pt-2">
+                    Nothing was sent yet — your message goes out when you tap send on WhatsApp.
+                  </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -191,8 +225,11 @@ const ContactPage: React.FC = () => {
                     type="submit"
                     className="btn btn-solid w-full py-3 justify-center"
                   >
-                    Submit Enquiry
+                    Send on WhatsApp
                   </button>
+                  <p className="text-xs text-[#A9BCDD] text-center">
+                    This opens WhatsApp with your message filled in. Nothing is sent until you tap send.
+                  </p>
                 </form>
               )}
             </div>

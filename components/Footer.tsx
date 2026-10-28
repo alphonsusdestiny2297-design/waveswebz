@@ -53,10 +53,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenQuote }) => {
             Services
           </button>
           <button type="button" onClick={() => handlePageClick('journey')} className="text-white/85 hover:text-white transition-colors">
-            Customer Journey
+            Journey
           </button>
           <button type="button" onClick={() => handlePageClick('process')} className="text-white/85 hover:text-white transition-colors">
-            Build Process
+            Process
           </button>
           <button type="button" onClick={() => handlePageClick('ai')} className="text-white/85 hover:text-white transition-colors">
             WhatsApp AI

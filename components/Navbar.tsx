@@ -57,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="w-full relative z-30 pt-4 px-4 sm:px-6">
+    <header className="site-header w-full px-4 sm:px-6">
       <div className="wrap">
         <nav className="top glass" aria-label="Main Navigation">
           {/* Brand Logo with Proper Waves Logo Box */}

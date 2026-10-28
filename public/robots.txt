@@ -1,11 +1,10 @@
-# Robots.txt for Waves (https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app)
+# Robots.txt for Waves (https://waveswebz.vercel.app)
 # Optimized for Google, Bing, and Modern AI Answer Engines
 
 User-agent: *
 Allow: /
 Allow: /og-image.jpg
 Allow: /og-image.png
-Allow: /fonts/
 
 # Search Engine Crawlers
 User-agent: Googlebot
@@ -41,4 +40,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://ais-dev-c6wajfbegsmrgjjlbmi4a5-639564942567.europe-west2.run.app/sitemap.xml
+Sitemap: https://waveswebz.vercel.app/sitemap.xml

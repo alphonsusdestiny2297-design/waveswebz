@@ -1,10 +1,9 @@
 import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
-export default defineConfig(({ mode }) => {
-    const env = loadEnv(mode, '.', '');
+export default defineConfig(() => {
     return {
       server: {
         port: 3000,
@@ -57,8 +56,26 @@ export default defineConfig(({ mode }) => {
             ]
           },
           workbox: {
-            globPatterns: ['**/*.{js,css,html,ico,png,jpg,jpeg,svg,woff,woff2}'],
+            // Precache ONLY the app shell. Photos/icons are cached on demand so
+            // first visit stays light on mobile data (was ~30 MB precached).
+            globPatterns: ['**/*.{js,css,html,ico,svg,woff,woff2,webmanifest}'],
+            navigateFallback: '/index.html',
             runtimeCaching: [
+              {
+                // Site photos: cache-first, so repeat views work offline and cost no data
+                urlPattern: /\.(?:jpg|jpeg|png|webp|gif|avif)$/,
+                handler: 'CacheFirst',
+                options: {
+                  cacheName: 'waves-images',
+                  expiration: {
+                    maxEntries: 60,
+                    maxAgeSeconds: 60 * 60 * 24 * 90,
+                  },
+                  cacheableResponse: {
+                    statuses: [0, 200],
+                  },
+                },
+              },
               {
                 urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
                 handler: 'CacheFirst',
@@ -95,10 +112,6 @@ export default defineConfig(({ mode }) => {
           },
         }),
       ],
-      define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
-      },
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '.'),
