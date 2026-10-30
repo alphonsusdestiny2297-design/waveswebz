@@ -16,7 +16,7 @@ const JourneyPage: React.FC<JourneyPageProps> = ({ onOpenQuote }) => {
       {/* Page Header Band with Uploaded Golden Skyline Image */}
       <div 
         className="page-header-band"
-        style={{ backgroundImage: `url('/assets/images/skyline_golden_lake_1790663127615.jpg')` }}
+        style={{ backgroundImage: `url('/assets/images/skyline_golden_lake_1790663127615.webp')` }}
       >
         <div className="page-header-overlay" />
         <span className="wv-tag mb-3 relative z-10">Conversion Architecture</span>

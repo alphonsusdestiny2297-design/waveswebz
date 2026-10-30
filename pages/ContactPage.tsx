@@ -4,7 +4,9 @@
 */
 
 import React, { useState } from 'react';
-import { WHATSAPP_LINK, WHATSAPP_CONTACT } from '../constants';
+import { WHATSAPP_LINK, WHATSAPP_CONTACT, CONTACT_EMAIL } from '../constants';
+
+const hasContactEmail = CONTACT_EMAIL.trim().length > 0;
 
 const SERVICE_LABELS: Record<string, string> = {
   launch: 'Launch — Digital Home Foundation',
@@ -56,7 +58,7 @@ const ContactPage: React.FC = () => {
       {/* Page Header Band with Uploaded Night Skyline Image */}
       <div 
         className="page-header-band"
-        style={{ backgroundImage: `url('/assets/images/skyscrapers_night_water_1790663140393.jpg')` }}
+        style={{ backgroundImage: `url('/assets/images/skyscrapers_night_water_1790663140393.webp')` }}
       >
         <div className="page-header-overlay" />
         <span className="wv-tag mb-3 relative z-10">Get In Touch</span>
@@ -106,22 +108,30 @@ const ContactPage: React.FC = () => {
               </div>
             </a>
 
-            {/* Email Contact Card */}
-            <div className="card p-4 sm:p-6 flex items-center gap-3.5 sm:gap-5">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#2F7BFF]/15 text-[#7CC0FF] flex items-center justify-center shrink-0">
-                <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24">
-                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                </svg>
-              </div>
-              <div className="min-w-0">
-                <span className="block text-base sm:text-xl font-display font-bold text-white tracking-tight break-all sm:break-normal">
-                  hello@wavesdigital.ng
-                </span>
-                <p className="m-0 text-xs text-[#CBD7EC] mt-0.5">
-                  Official project quotes & written correspondence
-                </p>
-              </div>
-            </div>
+            {/* Email Contact Card — hidden until a real, monitored mailbox is
+                configured in CONTACT_EMAIL. The address previously shown here
+                (hello@wavesdigital.ng) has no DNS or mail records, so enquiries
+                sent to it were lost. */}
+            {hasContactEmail && (
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="card p-4 sm:p-6 flex items-center gap-3.5 sm:gap-5 group"
+              >
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#2F7BFF]/15 text-[#7CC0FF] flex items-center justify-center shrink-0">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  </svg>
+                </div>
+                <div className="min-w-0">
+                  <span className="block text-base sm:text-xl font-display font-bold text-white tracking-tight break-all sm:break-normal group-hover:text-[#7CC0FF] transition-colors">
+                    {CONTACT_EMAIL}
+                  </span>
+                  <p className="m-0 text-xs text-[#CBD7EC] mt-0.5">
+                    Official project quotes & written correspondence
+                  </p>
+                </div>
+              </a>
+            )}
 
             <div className="card p-6">
               <h4 className="text-xs uppercase tracking-wider text-[#7CC0FF] font-mono mb-2">

@@ -1,0 +1,61 @@
+{
+  "siteUrl": "https://waveswebz.vercel.app",
+  "routes": [
+    {
+      "id": "home",
+      "path": "/",
+      "title": "Waves — Websites and WhatsApp AI for Nigerian businesses",
+      "description": "Fast, mobile-first business websites for Nigerian SMEs, with AI that answers customers and books appointments on WhatsApp.",
+      "ogTitle": "Waves — SME Digital Transformation & Business Websites",
+      "ogDescription": "Fast, reliable, mobile-first business websites for Nigerian SMEs. Your digital home engineered to build trust and drive real customer action on WhatsApp."
+    },
+    {
+      "id": "about",
+      "path": "/about",
+      "title": "About Waves — Why Small Businesses Deserve Better Websites",
+      "description": "The thinking behind Waves: clear, mobile-first websites built for Nigerian SMEs to earn trust and turn attention into WhatsApp enquiries.",
+      "ogTitle": "About Waves — Your Business. Your Digital Home.",
+      "ogDescription": "Why Waves builds disciplined, mobile-first websites for Nigerian SMEs instead of decorative brochures nobody acts on."
+    },
+    {
+      "id": "journey",
+      "path": "/journey",
+      "title": "The Customer Journey — How a Waves Website Converts",
+      "description": "How a Waves site moves a visitor from discovery to trust to enquiry, using a five-stage conversion structure built into every page.",
+      "ogTitle": "The Customer Journey — Discovery to Enquiry",
+      "ogDescription": "Discover, Understand, Trust, Enquire, Act: the five-stage structure every Waves website is built around."
+    },
+    {
+      "id": "services",
+      "path": "/services",
+      "title": "Services & Packages — Launch, Growth & AI Growth | Waves",
+      "description": "Three clear website packages for Nigerian SMEs, from a credible digital home to a grounded WhatsApp AI concierge. Scope, deliverables and pricing approach.",
+      "ogTitle": "Website Packages — Launch, Growth & AI Growth",
+      "ogDescription": "Launch, Growth and AI Growth: three clearly scoped website packages for Nigerian SMEs, with WhatsApp built into every one."
+    },
+    {
+      "id": "process",
+      "path": "/process",
+      "title": "Our 9-Step Process — From First Call to Handover | Waves",
+      "description": "A transparent nine-step build process: discovery, structure, design, build, review and handover, with your role defined at every stage.",
+      "ogTitle": "How It Works — A 9-Step Build Process",
+      "ogDescription": "From the first conversation to handover and support: a nine-step process where you always know what is being built and when."
+    },
+    {
+      "id": "ai",
+      "path": "/ai",
+      "title": "AI for Your Business — Grounded WhatsApp Concierge | Waves",
+      "description": "Practical AI modules for SMEs: a WhatsApp concierge that answers only from your approved information and hands over to you when it is unsure.",
+      "ogTitle": "AI Modules — A Concierge That Knows Its Limits",
+      "ogDescription": "Grounded AI for small businesses: answers from approved information only, with a clear handover to a human when it is unsure."
+    },
+    {
+      "id": "contact",
+      "path": "/contact",
+      "title": "Contact Waves — Start Your Project on WhatsApp",
+      "description": "Talk to Waves about your business website. Send your details on WhatsApp and get a clear written scope, price and timeline before work starts.",
+      "ogTitle": "Contact Waves — Start Your Project",
+      "ogDescription": "Tell us about your business and get a clear written scope, price and timeline. Fastest route: WhatsApp."
+    }
+  ]
+}

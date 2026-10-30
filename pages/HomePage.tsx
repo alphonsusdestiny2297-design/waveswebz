@@ -12,6 +12,7 @@ import {
   CUSTOMER_JOURNEY_STAGES,
   PROCESS_STEPS
 } from '../constants';
+import { useFaqSchema } from '../utils/structuredData';
 
 interface HomePageProps {
   onNavigate: (page: PageId) => void;
@@ -21,22 +22,22 @@ interface HomePageProps {
 
 const HERO_SLIDES = [
   {
-    url: '/assets/images/skyline_golden_lake_1790663127615.jpg',
+    url: '/assets/images/skyline_golden_lake_1790663127615.webp',
     title: 'Precision Craftsmanship',
     subtitle: 'High-converting digital homes tailored for Nigerian enterprises'
   },
   {
-    url: '/assets/images/skyscrapers_night_water_1790663140393.jpg',
+    url: '/assets/images/skyscrapers_night_water_1790663140393.webp',
     title: 'Credibility That Converts',
     subtitle: 'Turn casual social browsers into paying customers'
   },
   {
-    url: '/assets/images/city_street_rainy_chrysler_1790663155616.jpg',
+    url: '/assets/images/city_street_rainy_chrysler_1790663155616.webp',
     title: 'Fast Mobile-First Foundations',
     subtitle: 'Engineered to open in seconds on real smartphone connections'
   },
   {
-    url: '/assets/images/urban_golden_hour_street_1790663189316.jpg',
+    url: '/assets/images/urban_golden_hour_street_1790663189316.webp',
     title: 'Integrated WhatsApp AI',
     subtitle: 'Automated appointment booking and 24/7 lead qualification'
   }
@@ -167,7 +168,13 @@ const FAQS = [
   }
 ];
 
+// FAQPage structured data is generated from the same array that renders the
+// visible accordion below, so the schema can never describe hidden content.
+const HOME_FAQ_SCHEMA = FAQS.map(({ q, a }) => ({ question: q, answer: a }));
+
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenQuote, onOpenChat }) => {
+  useFaqSchema(HOME_FAQ_SCHEMA);
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [previewMode, setPreviewMode] = useState<'chat' | 'gallery'>('chat');
   const [formName, setFormName] = useState('');

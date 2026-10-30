@@ -16,7 +16,7 @@ const ProcessPage: React.FC<ProcessPageProps> = ({ onOpenQuote }) => {
       {/* Page Header Band with Uploaded Golden Hour Street Scene */}
       <div 
         className="page-header-band"
-        style={{ backgroundImage: `url('/assets/images/urban_golden_hour_street_1790663189316.jpg')` }}
+        style={{ backgroundImage: `url('/assets/images/urban_golden_hour_street_1790663189316.webp')` }}
       >
         <div className="page-header-overlay" />
         <span className="wv-tag mb-3 relative z-10">Build Roadmap</span>

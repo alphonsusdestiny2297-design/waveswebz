@@ -10,6 +10,16 @@ export const BRAND_TAGLINE = 'Your Business. Your Digital Home.';
 export const WHATSAPP_CONTACT = '+2348100461332';
 export const WHATSAPP_LINK = 'https://wa.me/2348100461332?text=Hello%20Waves,%20I%20would%20like%20to%20discuss%20a%20digital%20home%20for%20my%20business.';
 
+/**
+ * Public contact mailbox. Deliberately empty right now: the address previously
+ * displayed (hello@wavesdigital.ng) has no DNS or mail records at all, so mail
+ * sent to it was silently lost. Set this to a real, monitored inbox — for
+ * example 'hello@yourdomain.com' — and the contact page renders the email card
+ * automatically; while it is empty the card is hidden rather than advertising
+ * an address that nobody can reach.
+ */
+export const CONTACT_EMAIL = '';
+
 export const BELIEFS = [
   'A website should work for the business, not just look good.',
   'A small business does not need a small-looking digital presence.',

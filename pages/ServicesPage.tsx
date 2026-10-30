@@ -6,18 +6,22 @@
 import React from 'react';
 import { ServiceLevelId } from '../types';
 import { SERVICE_LEVELS, FAQS, WHATSAPP_LINK } from '../constants';
+import { useFaqSchema } from '../utils/structuredData';
 
 interface ServicesPageProps {
   onOpenQuote: (levelId?: ServiceLevelId) => void;
 }
 
 const ServicesPage: React.FC<ServicesPageProps> = ({ onOpenQuote }) => {
+  // Schema comes from the same FAQS array that renders the accordions below.
+  useFaqSchema(FAQS);
+
   return (
     <div className="w-full">
       {/* Page Header Band with Uploaded Rainy City Street Image */}
       <div 
         className="page-header-band"
-        style={{ backgroundImage: `url('/assets/images/city_street_rainy_chrysler_1790663155616.jpg')` }}
+        style={{ backgroundImage: `url('/assets/images/city_street_rainy_chrysler_1790663155616.webp')` }}
       >
         <div className="page-header-overlay" />
         <span className="wv-tag mb-3 relative z-10">Packages & Scope</span>

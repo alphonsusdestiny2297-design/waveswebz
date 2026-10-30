@@ -16,7 +16,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ onOpenQuote }) => {
       {/* Page Header Band with Uploaded Workspace Image */}
       <div 
         className="page-header-band"
-        style={{ backgroundImage: `url('/assets/images/creative_team_workspace_1790663167313.jpg')` }}
+        style={{ backgroundImage: `url('/assets/images/creative_team_workspace_1790663167313.webp')` }}
       >
         <div className="page-header-overlay" />
         <span className="wv-tag mb-3 relative z-10">Digital Identity</span>

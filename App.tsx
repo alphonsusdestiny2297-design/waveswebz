@@ -17,6 +17,7 @@ import ProcessPage from './pages/ProcessPage';
 import AIPage from './pages/AIPage';
 import ContactPage from './pages/ContactPage';
 import { PageId, ServiceLevelId } from './types';
+import seo from './seo.json';
 import { OfflineIndicator } from './components/OfflineIndicator';
 
 function App() {
@@ -54,6 +55,33 @@ function App() {
       window.removeEventListener('hashchange', handlePopState);
     };
   }, []);
+
+  // Keep the document head in sync with the active page. The prerendered HTML
+  // ships correct tags for a cold load, but in-app navigation (and legacy #/ hash
+  // links) would otherwise leave the previous page's title and social tags in place.
+  useEffect(() => {
+    const route = seo.routes.find((r) => r.id === currentPage) ?? seo.routes[0];
+    const url = `${seo.siteUrl}${route.path === '/' ? '/' : route.path}`;
+    const ogTitle = route.ogTitle ?? route.title;
+    const ogDescription = route.ogDescription ?? route.description;
+
+    document.title = route.title;
+
+    const setMeta = (selector: string, content: string) => {
+      const el = document.querySelector<HTMLMetaElement>(selector);
+      if (el) el.setAttribute('content', content);
+    };
+
+    setMeta('meta[name="description"]', route.description);
+    setMeta('meta[property="og:title"]', ogTitle);
+    setMeta('meta[property="og:description"]', ogDescription);
+    setMeta('meta[property="og:url"]', url);
+    setMeta('meta[name="twitter:title"]', ogTitle);
+    setMeta('meta[name="twitter:description"]', ogDescription);
+
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', url);
+  }, [currentPage]);
 
   const navigateTo = (page: PageId) => {
     setCurrentPage(page);
